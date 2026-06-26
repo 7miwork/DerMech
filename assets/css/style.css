@@ -132,15 +132,25 @@ nav.scrolled {
   justify-content: space-between;
 }
 
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
 .nav-logo {
+  height: 40px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.nav-brand-text {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.25rem;
   color: var(--color-white);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
 }
 
 .nav-links {
