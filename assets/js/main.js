@@ -1,0 +1,226 @@
+// DerMech Solution - Shared JavaScript
+
+(function() {
+  'use strict';
+
+  // ============================================
+  // 1. STICKY NAV SCROLL EFFECT
+  // ============================================
+  function initStickyNav() {
+    const nav = document.querySelector('nav');
+    if (!nav) return;
+
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 60) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }, { passive: true });
+  }
+
+  // ============================================
+  // 2. LANGUAGE TOGGLE
+  // ============================================
+  function initLanguageToggle() {
+    const langBtns = document.querySelectorAll('.lang-btn');
+    const html = document.documentElement;
+
+    // Load saved preference
+    const savedLang = localStorage.getItem('dermech-lang') || 'en';
+    setLanguage(savedLang);
+
+    langBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const lang = this.dataset.lang;
+        setLanguage(lang);
+        localStorage.setItem('dermech-lang', lang);
+      });
+    });
+
+    function setLanguage(lang) {
+      html.classList.toggle('lang-zh', lang === 'zh');
+      
+      // Update active button
+      langBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+
+      // Swap all bilingual text nodes
+      document.querySelectorAll('[data-en][data-zh]').forEach(el => {
+        const text = lang === 'zh' ? el.dataset.zh : el.dataset.en;
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') {
+          if (el.placeholder !== undefined) {
+            el.placeholder = text;
+          }
+        } else if (el.tagName === 'OPTION') {
+          el.textContent = text;
+        } else {
+          el.textContent = text;
+        }
+      });
+
+      // Update lang attribute for accessibility
+      html.setAttribute('lang', lang === 'zh' ? 'zh-Hant' : 'en');
+    }
+  }
+
+  // ============================================
+  // 3. ACTIVE NAV LINK
+  // ============================================
+  function initActiveNav() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === currentPath || (currentPath === '/' && href === 'index.html') || (currentPath.endsWith('/') && href === 'index.html')) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+
+  // ============================================
+  // 4. SCROLL REVEAL (IntersectionObserver)
+  // ============================================
+  function initScrollReveal() {
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      observer.observe(el);
+    });
+  }
+
+  // ============================================
+  // 5. MOBILE MENU
+  // ============================================
+  function initMobileMenu() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navOverlay = document.querySelector('.nav-overlay');
+    const overlayLinks = document.querySelectorAll('.nav-overlay a');
+
+    if (!menuToggle || !navOverlay) return;
+
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      navOverlay.classList.toggle('open');
+      document.body.style.overflow = navOverlay.classList.contains('open') ? 'hidden' : '';
+    });
+
+    // Close on link click
+    overlayLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        navOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && navOverlay.classList.contains('open')) {
+        menuToggle.classList.remove('active');
+        navOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  // ============================================
+  // 6. CONTACT FORM VALIDATION
+  // ============================================
+  function initContactForm() {
+    const form = document.querySelector('#contact-form');
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Clear previous errors
+      form.querySelectorAll('.form-error').forEach(el => el.remove());
+      form.querySelectorAll('.form-group').forEach(el => el.classList.remove('has-error'));
+
+      // Validate
+      let hasError = false;
+      const requiredFields = form.querySelectorAll('[required]');
+
+      requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+          showError(field, field.dataset.en || 'This field is required');
+          hasError = true;
+        }
+        // Email validation
+        if (field.type === 'email' && field.value.trim()) {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(field.value.trim())) {
+            showError(field, 'Please enter a valid email address');
+            hasError = true;
+          }
+        }
+      });
+
+      if (hasError) return;
+
+      // Show success state
+      const formHtml = form.innerHTML;
+      form.innerHTML = `
+        <div class="form-success reveal visible">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 1.5rem; color: var(--color-accent);">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <h3 data-en="Message Sent" data-zh="訊息已送出">Message Sent</h3>
+          <p data-en="Thank you for your inquiry. We will respond within 24 business hours." data-zh="感謝您的詢問。我們將在24個工作小時內回覆。">Thank you for your inquiry. We will respond within 24 business hours.</p>
+        </div>
+      `;
+      
+      // Re-initialize language for new elements
+      const savedLang = localStorage.getItem('dermech-lang') || 'en';
+      document.documentElement.classList.toggle('lang-zh', savedLang === 'zh');
+      form.querySelectorAll('[data-en][data-zh]').forEach(el => {
+        const text = savedLang === 'zh' ? el.dataset.zh : el.dataset.en;
+        el.textContent = text;
+      });
+    });
+
+    function showError(field, message) {
+      const formGroup = field.closest('.form-group');
+      formGroup.classList.add('has-error');
+      const errorEl = document.createElement('div');
+      errorEl.className = 'form-error';
+      errorEl.style.cssText = 'color: #EF4444; font-size: 0.8125rem; margin-top: 0.5rem; font-family: var(--font-mono);';
+      errorEl.textContent = message;
+      formGroup.appendChild(errorEl);
+    }
+  }
+
+  // ============================================
+  // INIT ALL
+  // ============================================
+  document.addEventListener('DOMContentLoaded', function() {
+    initStickyNav();
+    initLanguageToggle();
+    initActiveNav();
+    initScrollReveal();
+    initMobileMenu();
+    initContactForm();
+  });
+})();
