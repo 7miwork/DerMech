@@ -298,24 +298,43 @@ p {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
+    width: 100vw;
+    height: 100vh;
     background: #0F1923;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
-    z-index: 999;
-    padding-top: 80px;
+    gap: 2.5rem;
+    z-index: 1050;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
   }
   .nav-links.open {
     display: flex;
-    background: rgba(10, 18, 28, 0.97);  /* dunkler Hintergrund */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+  }
+  .nav-links a {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: #1A56DB;
   }
   .nav-container {
     padding: 0 1.25rem;
+  }
+  .nav-hamburger {
+    position: relative;
+    z-index: 1100;
+  }
+  .navbar {
+    z-index: 1100;
   }
 }
 
