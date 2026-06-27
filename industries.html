@@ -15,72 +15,6 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <!-- Blueprint decorative overlay — do not remove -->
-  <div class="blueprint-overlay" aria-hidden="true">
-    <svg class="blueprint-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
-
-      <!-- Corner crosshair — top left -->
-      <g opacity="0.18" stroke="#1A56DB" stroke-width="1" fill="none">
-        <line x1="60" y1="40" x2="60" y2="120"/>
-        <line x1="20" y1="80" x2="100" y2="80"/>
-        <circle cx="60" cy="80" r="20"/>
-        <circle cx="60" cy="80" r="4"/>
-      </g>
-
-      <!-- Corner crosshair — top right -->
-      <g opacity="0.18" stroke="#1A56DB" stroke-width="1" fill="none">
-        <line x1="1380" y1="40" x2="1380" y2="120"/>
-        <line x1="1340" y1="80" x2="1420" y2="80"/>
-        <circle cx="1380" cy="80" r="20"/>
-        <circle cx="1380" cy="80" r="4"/>
-      </g>
-
-      <!-- Large faint circle — center right -->
-      <circle cx="1200" cy="450" r="280" stroke="#1A56DB" stroke-width="0.5" fill="none" opacity="0.08"/>
-      <circle cx="1200" cy="450" r="180" stroke="#1A56DB" stroke-width="0.5" fill="none" opacity="0.06"/>
-      <circle cx="1200" cy="450" r="80" stroke="#1A56DB" stroke-width="0.5" fill="none" opacity="0.08"/>
-
-      <!-- Dimension line — horizontal, center -->
-      <g opacity="0.12" stroke="#1A56DB" stroke-width="0.75" fill="none">
-        <line x1="200" y1="820" x2="800" y2="820"/>
-        <line x1="200" y1="812" x2="200" y2="828"/>
-        <line x1="800" y1="812" x2="800" y2="828"/>
-        <!-- Dimension arrows -->
-        <polygon points="207,817 200,820 207,823" fill="#1A56DB" opacity="0.3"/>
-        <polygon points="793,817 800,820 793,823" fill="#1A56DB" opacity="0.3"/>
-      </g>
-
-      <!-- Small technical bracket — bottom left -->
-      <g opacity="0.15" stroke="#1A56DB" stroke-width="0.75" fill="none">
-        <rect x="40" y="780" width="80" height="60"/>
-        <line x1="40" y1="810" x2="120" y2="810"/>
-        <line x1="80" y1="780" x2="80" y2="840"/>
-        <circle cx="80" cy="810" r="8"/>
-      </g>
-
-      <!-- Angle indicator — bottom right -->
-      <g opacity="0.12" stroke="#1A56DB" stroke-width="0.75" fill="none">
-        <path d="M 1360 860 L 1360 780 L 1440 780"/>
-        <path d="M 1360 860 Q 1360 800 1420 800" fill="none"/>
-        <text x="1375" y="830" font-family="monospace" font-size="10" fill="#1A56DB" opacity="0.4">90°</text>
-      </g>
-
-      <!-- Scattered coordinate dots — mid left -->
-      <g opacity="0.2" fill="#1A56DB">
-        <circle cx="120" cy="300" r="2"/>
-        <circle cx="120" cy="340" r="1.5"/>
-        <circle cx="120" cy="380" r="2"/>
-        <circle cx="120" cy="420" r="1.5"/>
-        <circle cx="120" cy="460" r="2"/>
-      </g>
-
-      <!-- Technical text labels -->
-      <text x="44" y="36" font-family="monospace" font-size="9" fill="#1A56DB" opacity="0.25" letter-spacing="1">DM-2024-001</text>
-      <text x="44" y="870" font-family="monospace" font-size="9" fill="#1A56DB" opacity="0.2" letter-spacing="1">DERMECH SOLUTION | ENGINEERING DRAWING REF</text>
-      <text x="1200" y="870" font-family="monospace" font-size="9" fill="#1A56DB" opacity="0.2" letter-spacing="1">SCALE 1:1</text>
-
-    </svg>
-  </div>
 
   <!-- ============================================
        NAVIGATION
@@ -113,7 +47,7 @@
   <!-- ============================================
        SECTION 1: PAGE HERO
        ============================================ -->
-  <section class="hero" style="height: 50vh;">
+  <section class="hero section-dark" style="height: 50vh;">
     <div class="hero-bg">
       <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080' viewBox='0 0 1920 1080'%3E%3Crect fill='%230D0D0D' width='1920' height='1080'/%3E%3C/svg%3E" alt="Industrial facility overview" style="background: var(--color-surface-2);">
     </div>
@@ -135,7 +69,7 @@
   <!-- ============================================
        SECTION 2: INDUSTRY GRID
        ============================================ -->
-  <section class="section reveal">
+  <section class="section section-light reveal">
     <div class="container">
       <div class="text-center" style="margin-bottom: 3rem;">
         <p class="caption" data-en="INDUSTRIES SERVED" data-zh="服務產業">INDUSTRIES SERVED</p>
@@ -220,7 +154,7 @@
   <!-- ============================================
        CTA BANNER
        ============================================ -->
-  <section class="section reveal" style="background: var(--color-bg); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); text-align: center;">
+  <section class="section section-dark reveal" style="text-align: center;">
     <div class="container">
       <h2 data-en="Your Industry Not Listed?" data-zh="您的產業未在列表中？">Your Industry Not Listed?</h2>
       <p style="margin: 1.5rem 0; font-size: 1.125rem;" data-en="Our engineering principles apply across sectors. Let's discuss your specific challenges." data-zh="我們的工程原則跨產業適用。讓我們探討您的特定挑戰。">Our engineering principles apply across sectors. Let's discuss your specific challenges.</p>
@@ -235,9 +169,9 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <p class="footer-logo" data-en="DerMech Solution" data-zh="德機智造">DerMech Solution</p>
+          <p class="footer-brand" data-en="DerMech Solution" data-zh="德機智造">DerMech Solution</p>
           <p data-en="Engineering Beyond Boundaries" data-zh="超越邊界的工程力量">Engineering Beyond Boundaries</p>
-          <p style="color: var(--color-text-muted); font-size: 0.875rem; margin-top: 0.5rem;" data-en="German Engineering × Taiwanese Innovation" data-zh="德國工程 × 台灣創新">German Engineering × Taiwanese Innovation</p>
+          <p class="footer-tagline" data-en="German Engineering × Taiwanese Innovation" data-zh="德國工程 × 台灣創新">German Engineering × Taiwanese Innovation</p>
         </div>
         <nav>
           <ul class="footer-links">

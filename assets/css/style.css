@@ -292,21 +292,25 @@ p {
 
 /* === HERO SECTIONS === */
 .hero {
-  min-height: calc(100vh - 72px);
   position: relative;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   text-align: center;
+  background-color: #0F1923;
+  overflow: hidden;
+  padding: 120px 2rem 80px;
 }
 
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
+  background:
+    linear-gradient(135deg, rgba(26, 86, 219, 0.06) 0%, transparent 60%),
+    linear-gradient(to bottom, #0F1923 0%, #162030 100%);
   z-index: 0;
-  pointer-events: none;
 }
 
 .hero > * {
@@ -314,6 +318,54 @@ p {
   z-index: 1;
 }
 
+.hero .hero-content,
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* Hero typography — always white on dark */
+.hero h1,
+.hero .hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.hero .hero-subtitle,
+.hero .hero-tagline {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  letter-spacing: 0.12em;
+  color: #1A56DB;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.hero .hero-description,
+.hero p {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: #9BAFC4;
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 auto 2.5rem;
+}
+
+.hero .hero-buttons,
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Legacy hero-bg and hero-overlay for backward compatibility */
 .hero-bg {
   position: absolute;
   top: 0;
@@ -340,18 +392,15 @@ p {
   z-index: -1;
 }
 
-
-
 .hero-content {
   max-width: 900px;
   padding: 0 var(--gutter);
 }
 
-.hero-btns {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 2.5rem;
+/* Sub-page heroes — shorter than homepage */
+.hero-subpage {
+  min-height: 45vh !important;
+  padding: 80px 2rem 60px;
 }
 
 .btn {
@@ -664,69 +713,86 @@ footer a:hover {
 
 
 /* === SECTION COLOR SYSTEM === */
+/* DARK sections — navy background, white text */
 .section-dark {
-  background-color: var(--color-dark-1);
-  color: var(--color-text-on-dark-primary);
-  border-bottom: 1px solid var(--color-border-dark);
+  background-color: #0F1923 !important;
+  color: #F0F0F2;
 }
 
 .section-dark h1,
 .section-dark h2,
 .section-dark h3,
-.section-dark h4 {
-  color: var(--color-text-on-dark-primary);
+.section-dark h4,
+.section-dark h5 {
+  color: #FFFFFF;
 }
 
 .section-dark p,
 .section-dark li,
-.section-dark span {
-  color: var(--color-text-on-dark-secondary);
+.section-dark span:not(.accent) {
+  color: #9BAFC4;
 }
 
 .section-dark .label,
-.section-dark .eyebrow {
-  color: var(--color-text-on-dark-muted);
+.section-dark .eyebrow,
+.section-dark .section-label {
+  color: #4F6880;
 }
 
-/* NAVY section — slightly lighter dark, for "Why Choose" panels */
+/* NAVY sections — mid-dark background */
 .section-navy {
-  background-color: var(--color-dark-2);
-  color: var(--color-text-on-dark-primary);
-  border-bottom: 1px solid var(--color-border-dark);
+  background-color: #162030 !important;
+  color: #F0F0F2;
 }
 
 .section-navy h2,
-.section-navy h3 {
-  color: var(--color-text-on-dark-primary);
+.section-navy h3,
+.section-navy h4 {
+  color: #FFFFFF;
 }
 
-.section-navy p {
-  color: var(--color-text-on-dark-secondary);
+.section-navy p,
+.section-navy li {
+  color: #9BAFC4;
 }
 
-/* LIGHT section — clean white/off-white content areas */
+/* LIGHT sections — white background, dark text */
 .section-light {
-  background-color: var(--color-light-1);
-  color: var(--color-text-on-light-primary);
-  border-bottom: 1px solid var(--color-border-light);
+  background-color: #FFFFFF !important;
+  color: #0F1923;
 }
 
 .section-light h2,
 .section-light h3,
 .section-light h4 {
-  color: var(--color-text-on-light-primary);
+  color: #0F1923;
 }
 
 .section-light p,
 .section-light li {
-  color: var(--color-text-on-light-secondary);
+  color: #4A6070;
 }
 
-/* OFF-WHITE section — alternating content */
+.section-light .eyebrow,
+.section-light .section-label {
+  color: #8A9BAA;
+}
+
+/* OFF-WHITE sections */
 .section-offwhite {
-  background-color: var(--color-light-2);
-  color: var(--color-text-on-light-primary);
-  border-bottom: 1px solid var(--color-border-light);
+  background-color: #F4F6F8 !important;
+  color: #0F1923;
+}
+
+.section-offwhite h2,
+.section-offwhite h3,
+.section-offwhite h4 {
+  color: #0F1923;
+}
+
+.section-offwhite p,
+.section-offwhite li {
+  color: #4A6070;
 }
 
 /* === HERO HEADLINE ACCENT BAR === */
@@ -739,51 +805,71 @@ footer a:hover {
   margin: 1.5rem auto 0;
 }
 
-/* Cards on dark sections get dark styling */
+/* Cards on light/offwhite sections */
+.section-light .card,
+.section-light .service-card,
+.section-light .feature-card,
+.section-light .industry-card,
+.section-offwhite .card,
+.section-offwhite .service-card,
+.section-offwhite .feature-card,
+.section-offwhite .industry-card {
+  background: #FFFFFF;
+  border: 1px solid #D8E0E8;
+  color: #0F1923;
+}
+
+.section-light .card h3,
+.section-offwhite .card h3,
+.section-light .service-card h3,
+.section-offwhite .service-card h3 {
+  color: #0F1923;
+}
+
+.section-light .card p,
+.section-offwhite .card p,
+.section-light .service-card p,
+.section-offwhite .service-card p {
+  color: #4A6070;
+}
+
+.section-light .card:hover,
+.section-offwhite .card:hover,
+.section-light .service-card:hover,
+.section-offwhite .service-card:hover {
+  border-color: #1A56DB;
+  box-shadow: 0 4px 20px rgba(26, 86, 219, 0.1);
+}
+
+/* Cards on dark sections */
 .section-dark .card,
-.section-navy .card,
 .section-dark .service-card,
-.section-navy .service-card,
 .section-dark .feature-card,
-.section-navy .feature-card,
-.section-dark .industry-card,
-.section-navy .industry-card {
-  background: var(--color-dark-3);
-  border-color: var(--color-border-dark);
-  color: var(--color-text-on-dark-primary);
+.section-navy .card,
+.section-navy .service-card,
+.section-navy .feature-card {
+  background: #1E2D3D;
+  border: 1px solid #1E3048;
+  color: #F0F0F2;
 }
 
 .section-dark .card h3,
 .section-navy .card h3,
-.section-dark .service-card h3,
-.section-navy .service-card h3,
 .section-dark .feature-card h3,
-.section-navy .feature-card h3,
-.section-dark .industry-card h3,
-.section-navy .industry-card h3 {
-  color: var(--color-text-on-dark-primary);
+.section-navy .feature-card h3 {
+  color: #FFFFFF;
 }
 
 .section-dark .card p,
 .section-navy .card p,
-.section-dark .service-card p,
-.section-navy .service-card p,
 .section-dark .feature-card p,
-.section-navy .feature-card p,
-.section-dark .industry-card p,
-.section-navy .industry-card p {
-  color: var(--color-text-on-dark-secondary);
+.section-navy .feature-card p {
+  color: #9BAFC4;
 }
 
 .section-dark .card:hover,
-.section-navy .card:hover,
-.section-dark .service-card:hover,
-.section-navy .service-card:hover,
-.section-dark .feature-card:hover,
-.section-navy .feature-card:hover,
-.section-dark .industry-card:hover,
-.section-navy .industry-card:hover {
-  border-color: var(--color-accent);
+.section-navy .card:hover {
+  border-color: #1A56DB;
 }
 
 

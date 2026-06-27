@@ -15,72 +15,6 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <!-- Blueprint decorative overlay — do not remove -->
-  <div class="blueprint-overlay" aria-hidden="true">
-    <svg class="blueprint-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
-
-      <!-- Corner crosshair — top left -->
-      <g opacity="0.18" stroke="#1A56DB" stroke-width="1" fill="none">
-        <line x1="60" y1="40" x2="60" y2="120"/>
-        <line x1="20" y1="80" x2="100" y2="80"/>
-        <circle cx="60" cy="80" r="20"/>
-        <circle cx="60" cy="80" r="4"/>
-      </g>
-
-      <!-- Corner crosshair — top right -->
-      <g opacity="0.18" stroke="#1A56DB" stroke-width="1" fill="none">
-        <line x1="1380" y1="40" x2="1380" y2="120"/>
-        <line x1="1340" y1="80" x2="1420" y2="80"/>
-        <circle cx="1380" cy="80" r="20"/>
-        <circle cx="1380" cy="80" r="4"/>
-      </g>
-
-      <!-- Large faint circle — center right -->
-      <circle cx="1200" cy="450" r="280" stroke="#1A56DB" stroke-width="0.5" fill="none" opacity="0.08"/>
-      <circle cx="1200" cy="450" r="180" stroke="#1A56DB" stroke-width="0.5" fill="none" opacity="0.06"/>
-      <circle cx="1200" cy="450" r="80" stroke="#1A56DB" stroke-width="0.5" fill="none" opacity="0.08"/>
-
-      <!-- Dimension line — horizontal, center -->
-      <g opacity="0.12" stroke="#1A56DB" stroke-width="0.75" fill="none">
-        <line x1="200" y1="820" x2="800" y2="820"/>
-        <line x1="200" y1="812" x2="200" y2="828"/>
-        <line x1="800" y1="812" x2="800" y2="828"/>
-        <!-- Dimension arrows -->
-        <polygon points="207,817 200,820 207,823" fill="#1A56DB" opacity="0.3"/>
-        <polygon points="793,817 800,820 793,823" fill="#1A56DB" opacity="0.3"/>
-      </g>
-
-      <!-- Small technical bracket — bottom left -->
-      <g opacity="0.15" stroke="#1A56DB" stroke-width="0.75" fill="none">
-        <rect x="40" y="780" width="80" height="60"/>
-        <line x1="40" y1="810" x2="120" y2="810"/>
-        <line x1="80" y1="780" x2="80" y2="840"/>
-        <circle cx="80" cy="810" r="8"/>
-      </g>
-
-      <!-- Angle indicator — bottom right -->
-      <g opacity="0.12" stroke="#1A56DB" stroke-width="0.75" fill="none">
-        <path d="M 1360 860 L 1360 780 L 1440 780"/>
-        <path d="M 1360 860 Q 1360 800 1420 800" fill="none"/>
-        <text x="1375" y="830" font-family="monospace" font-size="10" fill="#1A56DB" opacity="0.4">90°</text>
-      </g>
-
-      <!-- Scattered coordinate dots — mid left -->
-      <g opacity="0.2" fill="#1A56DB">
-        <circle cx="120" cy="300" r="2"/>
-        <circle cx="120" cy="340" r="1.5"/>
-        <circle cx="120" cy="380" r="2"/>
-        <circle cx="120" cy="420" r="1.5"/>
-        <circle cx="120" cy="460" r="2"/>
-      </g>
-
-      <!-- Technical text labels -->
-      <text x="44" y="36" font-family="monospace" font-size="9" fill="#1A56DB" opacity="0.25" letter-spacing="1">DM-2024-001</text>
-      <text x="44" y="870" font-family="monospace" font-size="9" fill="#1A56DB" opacity="0.2" letter-spacing="1">DERMECH SOLUTION | ENGINEERING DRAWING REF</text>
-      <text x="1200" y="870" font-family="monospace" font-size="9" fill="#1A56DB" opacity="0.2" letter-spacing="1">SCALE 1:1</text>
-
-    </svg>
-  </div>
 
   <!-- ============================================
        NAVIGATION
@@ -113,7 +47,7 @@
   <!-- ============================================
        SECTION 1: PAGE HERO
        ============================================ -->
-  <section class="hero" style="height: 60vh;">
+  <section class="hero section-dark" style="height: 60vh;">
     <div class="hero-bg">
       <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080' viewBox='0 0 1920 1080'%3E%3Crect fill='%230D0D0D' width='1920' height='1080'/%3E%3C/svg%3E" alt="Engineering office workspace" style="background: var(--color-surface-2);">
     </div>
@@ -135,7 +69,7 @@
   <!-- ============================================
        SECTION 2: FOUNDER PROFILE
        ============================================ -->
-  <section class="section reveal">
+  <section class="section section-light reveal">
     <div class="container">
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;">
         <!-- Left: Portrait -->
@@ -166,7 +100,7 @@
   <!-- ============================================
        SECTION 3: EXPERTISE GRID
        ============================================ -->
-  <section class="section reveal" style="background: rgba(20, 20, 20, 0.92);">
+  <section class="section section-offwhite reveal">
     <div class="container">
       <div class="text-center" style="margin-bottom: 3rem;">
         <p class="caption" data-en="AREAS OF EXPERTISE" data-zh="專業領域">AREAS OF EXPERTISE</p>
@@ -211,39 +145,39 @@
   <!-- ============================================
        SECTION 4: STANDARDS & CERTIFICATIONS
        ============================================ -->
-  <section class="section reveal">
+  <section class="section section-navy reveal">
     <div class="container">
       <div class="text-center" style="margin-bottom: 3rem;">
         <p class="caption" data-en="STANDARDS & METHODOLOGIES" data-zh="標準與方法論">STANDARDS & METHODOLOGIES</p>
         <h2 data-en="Quality & Compliance Framework" data-zh="品質與合規框架">Quality & Compliance Framework</h2>
       </div>
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--color-border); border: 1px solid var(--color-border);">
-        <div style="background: var(--color-bg); padding: 2.5rem 2rem; text-align: center;">
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--color-border-dark); border: 1px solid var(--color-border-dark);">
+        <div class="card" style="padding: 2.5rem 2rem; text-align: center;">
           <p class="caption mono" style="color: var(--color-accent);" data-en="CE" data-zh="CE">CE</p>
           <h3 style="margin: 1rem 0;" data-en="CE Compliance" data-zh="CE 合規">CE Compliance</h3>
           <p data-en="Full Machinery Directive compliance for equipment placed in the European Economic Area." data-zh="針對進入歐洲經濟區設備的機械指令全面合規。">Full Machinery Directive compliance for equipment placed in the European Economic Area.</p>
         </div>
-        <div style="background: var(--color-bg); padding: 2.5rem 2rem; text-align: center;">
+        <div class="card" style="padding: 2.5rem 2rem; text-align: center;">
           <p class="caption mono" style="color: var(--color-accent);" data-en="DIN" data-zh="DIN">DIN</p>
           <h3 style="margin: 1rem 0;" data-en="DIN Standards" data-zh="DIN 標準">DIN Standards</h3>
           <p data-en="German Institute for Standardization norms applied to mechanical design and documentation." data-zh="應用於機械設計與文件的德國標準化學會規範。">German Institute for Standardization norms applied to mechanical design and documentation.</p>
         </div>
-        <div style="background: var(--color-bg); padding: 2.5rem 2rem; text-align: center;">
+        <div class="card" style="padding: 2.5rem 2rem; text-align: center;">
           <p class="caption mono" style="color: var(--color-accent);" data-en="5S" data-zh="5S">5S</p>
           <h3 style="margin: 1rem 0;" data-en="5S Lean Manufacturing" data-zh="5S 精益生產">5S Lean Manufacturing</h3>
           <p data-en="Workplace organization methodology for efficiency, safety, and quality improvement." data-zh="提升效率、安全與品質的工作場所組織方法論。">Workplace organization methodology for efficiency, safety, and quality improvement.</p>
         </div>
-        <div style="background: var(--color-bg); padding: 2.5rem 2rem; text-align: center;">
+        <div class="card" style="padding: 2.5rem 2rem; text-align: center;">
           <p class="caption mono" style="color: var(--color-accent);" data-en="OPT" data-zh="優化">OPT</p>
           <h3 style="margin: 1rem 0;" data-en="Factory Workflow Optimization" data-zh="工廠流程優化">Factory Workflow Optimization</h3>
           <p data-en="Systematic analysis and redesign of production flows for maximum throughput." data-zh="系統性分析與重新設計生產流程以達最大產能。">Systematic analysis and redesign of production flows for maximum throughput.</p>
         </div>
-        <div style="background: var(--color-bg); padding: 2.5rem 2rem; text-align: center;">
+        <div class="card" style="padding: 2.5rem 2rem; text-align: center;">
           <p class="caption mono" style="color: var(--color-accent);" data-en="RISK" data-zh="風險">RISK</p>
           <h3 style="margin: 1rem 0;" data-en="Risk Assessment" data-zh="風險評估">Risk Assessment</h3>
           <p data-en="ISO 12100 aligned hazard identification and risk reduction for machinery safety." data-zh="符合 ISO 12100 的機械安全危害識別與風險降低。">ISO 12100 aligned hazard identification and risk reduction for machinery safety.</p>
         </div>
-        <div style="background: var(--color-bg); padding: 2.5rem 2rem; text-align: center;">
+        <div class="card" style="padding: 2.5rem 2rem; text-align: center;">
           <p class="caption mono" style="color: var(--color-accent);" data-en="DOC" data-zh="文件">DOC</p>
           <h3 style="margin: 1rem 0;" data-en="Engineering Documentation" data-zh="工程文件">Engineering Documentation</h3>
           <p data-en="Complete technical files, risk assessments, and declaration of conformity preparation." data-zh="完整技術檔案、風險評估與符合性聲明編製。">Complete technical files, risk assessments, and declaration of conformity preparation.</p>
@@ -255,7 +189,7 @@
   <!-- ============================================
        SECTION 5: EDUCATION & MENTORING
        ============================================ -->
-  <section class="section reveal" style="background: rgba(20, 20, 20, 0.92);">
+  <section class="section section-light reveal">
     <div class="container">
       <div class="text-center" style="margin-bottom: 3rem;">
         <p class="caption" data-en="EDUCATION & MENTORING" data-zh="教育與指導">EDUCATION & MENTORING</p>
@@ -276,9 +210,9 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <p class="footer-logo" data-en="DerMech Solution" data-zh="德機智造">DerMech Solution</p>
+          <p class="footer-brand" data-en="DerMech Solution" data-zh="德機智造">DerMech Solution</p>
           <p data-en="Engineering Beyond Boundaries" data-zh="超越邊界的工程力量">Engineering Beyond Boundaries</p>
-          <p style="color: var(--color-text-muted); font-size: 0.875rem; margin-top: 0.5rem;" data-en="German Engineering × Taiwanese Innovation" data-zh="德國工程 × 台灣創新">German Engineering × Taiwanese Innovation</p>
+          <p class="footer-tagline" data-en="German Engineering × Taiwanese Innovation" data-zh="德國工程 × 台灣創新">German Engineering × Taiwanese Innovation</p>
         </div>
         <nav>
           <ul class="footer-links">
