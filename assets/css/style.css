@@ -51,13 +51,11 @@ img, picture, video, canvas, svg {
 
   /* Navbar / Footer */
   --nav-footer-bg: #1A56DB;
-  --brand: #1A56DB;
-  --brand-hover: #1744B8;
   --nav-footer-text: #FFFFFF;
-  --nav-footer-muted: rgba(255, 255, 255, 0.8);
+  --nav-footer-muted: rgba(255, 255, 255, 0.85);
   --nav-footer-hover: rgba(255, 255, 255, 0.7);
-  --nav-link-active-bg: #2563EB;
-  --nav-height: 80px;
+  --nav-link-active-bg: #2A6FE0;
+  --nav-height: 72px;
 
   /* Fonts */
   --font-display: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
@@ -134,11 +132,9 @@ p {
   left: 0;
   right: 0;
   z-index: 1000;
-  min-height: 96px;
-  padding: 0.25em 0;
-  background: rgba(15, 25, 35, 0.97);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--color-border);
+  height: var(--nav-height);
+  background: var(--nav-footer-bg);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .nav-container {
@@ -171,9 +167,9 @@ p {
 
 .nav-brand-text {
   font-family: var(--font-display);
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: var(--color-text-primary);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-weight: 700;
+  color: var(--nav-footer-text);
   white-space: nowrap;
   text-align: center;
 }
@@ -198,23 +194,36 @@ p {
 
 .nav-links a {
   font-family: var(--font-body);
-  font-size: 1.0rem;
+  font-size: clamp(0.85rem, 1.3vw, 1.05rem);
   font-weight: 500;
-  color: var(--color-text-secondary);
+  color: var(--nav-footer-text);
   text-decoration: none;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   text-align: center;
   white-space: nowrap;
   transition: color 0.2s ease;
-  padding: 0.25rem 0;
-  border-bottom: 2px solid transparent;
+  padding: 0.5rem 0;
+  position: relative;
 }
 
-.nav-links a:hover,
+.nav-links a:hover {
+  color: var(--nav-footer-hover);
+}
+
 .nav-links a.active {
-  color: var(--color-text-primary);
-  border-bottom-color: var(--color-accent);
+  color: #FFFFFF;
+}
+
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: #FFFFFF;
+  border-radius: 2px;
 }
 
 .nav-right {
@@ -226,28 +235,28 @@ p {
 }
 
 .lang-toggle {
-  background: rgb(10, 74, 10);
-  border: 1px solid var(--color-border);
-  color: var(--color-text-secondary);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  color: var(--nav-footer-text);
   font-family: var(--font-body);
-  font-size: 1.0rem;
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
   font-weight: 500;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   padding: 0.4rem 0.75rem;
   cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
 }
 
 .lang-toggle:hover {
-  border-color: var(--color-accent);
-  color: var(--color-text-primary);
+  border-color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .nav-hamburger {
   display: none;
   background: transparent;
   border: none;
-  color: var(--color-text-primary);
+  color: var(--nav-footer-text);
   font-size: 1.5rem;
   cursor: pointer;
   padding: 0.25rem;
@@ -258,11 +267,11 @@ p {
   .nav-links {
     display: none;
     position: fixed;
-    top: 6.5em;
+    top: var(--nav-height);
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--color-bg);
+    background: var(--nav-footer-bg);
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -678,10 +687,10 @@ p {
 
 /* === FOOTER === */
 footer {
-  background-color: #0D1B2A;
-  border-top: 1px solid #1E3048;
+  background: var(--nav-footer-bg);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
   padding: 60px 0 32px;
-  color: #9BAFC4;
+  color: var(--nav-footer-muted);
 }
 
 .footer-grid {
@@ -701,24 +710,24 @@ footer {
 
 .footer-tagline {
   font-size: 0.875rem;
-  color: #4F6880;
+  color: rgba(255, 255, 255, 0.75);
 }
 
 footer a {
-  color: #9BAFC4;
+  color: var(--nav-footer-muted);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 footer a:hover {
-  color: var(--color-accent);
+  color: var(--nav-footer-hover);
 }
 
 footer .footer-copy,
 .copyright {
   font-size: 0.8rem;
-  color: #4F6880;
-  border-top: 1px solid #1E3048;
+  color: rgba(255, 255, 255, 0.7);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
   padding-top: 1.5rem;
   margin-top: 2rem;
   text-align: center;
