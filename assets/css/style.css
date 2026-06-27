@@ -15,7 +15,7 @@ body {
   margin: 0;
   padding-top: 6em;
   font-family: var(--font-body);
-  color: var(--color-text-primary);
+  color: var(--color-text-third);
   background-color: var(--color-bg);
   -webkit-font-smoothing: antialiased;
 }
@@ -36,6 +36,7 @@ body {
   /* Text on light backgrounds */
   --color-text-primary:   #bbcdd4d6;
   --color-text-secondary: #bbcdd4d6;
+  --color-text-third:     #01425bd6;
   --color-text-muted:     #8A9BAA;
 
   /* Accent */
@@ -99,7 +100,7 @@ h3 {
 }
 
 p {
-  color: var(--color-text-secondary);
+  color: var(--color-text-third);
   margin-bottom: 1.5rem;
 }
 
@@ -560,7 +561,7 @@ p {
 /* === BRAND TICKER === */
 .brand-ticker,
 .ticker-section {
-  background-color: #F5F7FA;
+  background-color: #FFFFFF;
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
   padding: 20px 0;
@@ -589,7 +590,7 @@ p {
 /* === STATS BAR === */
 .stats-bar,
 .stats-section {
-  background-color: #F5F7FA;
+  background-color: #FFFFFF;
   border-bottom: 1px solid var(--color-border);
   padding: 60px 0;
 }
@@ -734,7 +735,7 @@ footer .footer-copy,
 /* Light sections — pure white */
 .section-light {
   background-color: #FFFFFF;
-  color: var(--color-text-primary);
+  color: var(--color-text-third);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -742,12 +743,12 @@ footer .footer-copy,
 .section-light h2,
 .section-light h3,
 .section-light h4 {
-  color: var(--color-text-primary);
+  color: var(--color-text-third);
 }
 
 .section-light p,
 .section-light li {
-  color: var(--color-text-secondary);
+  color: var(--color-text-third);
 }
 
 .section-light .eyebrow,
@@ -757,8 +758,8 @@ footer .footer-copy,
 
 /* Off-white sections — very light gray */
 .section-offwhite {
-  background-color: #F5F7FA;
-  color: var(--color-text-primary);
+  background-color: #FFFFFF;
+  color: var(--color-text-third);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -766,12 +767,12 @@ footer .footer-copy,
 .section-offwhite h2,
 .section-offwhite h3,
 .section-offwhite h4 {
-  color: var(--color-text-primary);
+  color: var(--color-text-third);
 }
 
 .section-offwhite p,
 .section-offwhite li {
-  color: var(--color-text-secondary);
+  color: var(--color-text-third);
 }
 
 .section-offwhite .eyebrow,
@@ -829,7 +830,7 @@ footer .footer-copy,
   font-family: var(--font-display);
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--color-text-third);
   line-height: 1.1;
   letter-spacing: -0.02em;
   margin: 0 0 1rem;
@@ -837,7 +838,7 @@ footer .footer-copy,
 
 .section-header p {
   font-size: 1.1rem;
-  color: var(--color-text-secondary);
+  color: var(--color-text-third);
   line-height: 1.7;
   max-width: 600px;
   margin: 0 auto;
@@ -860,7 +861,7 @@ footer .footer-copy,
 .industry-card {
   background: #FFFFFF;
   border: 1px solid var(--color-border);
-  color: var(--color-text-primary);
+  color: var(--color-text-third);
   padding: 2rem;
   transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
@@ -880,7 +881,7 @@ footer .footer-copy,
   font-family: var(--font-display);
   font-size: 1.35rem;
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-text-third);
   margin-bottom: 0.75rem;
 }
 
@@ -888,7 +889,7 @@ footer .footer-copy,
 .service-card p,
 .feature-card p {
   font-size: 0.95rem;
-  color: var(--color-text-secondary);
+  color: var(--color-text-third);
   line-height: 1.7;
 }
 
@@ -902,9 +903,9 @@ footer .footer-copy,
 /* === CTA BANNER === */
 .cta-section,
 .cta-banner {
-  background-color: var(--color-accent-tint);
-  border-top: 1px solid #C8D9F5;
-  border-bottom: 1px solid #C8D9F5;
+  background-color: #FFFFFF;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   padding: 100px 2rem;
   text-align: center;
 }
@@ -914,13 +915,13 @@ footer .footer-copy,
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--color-text-third);
   margin-bottom: 1rem;
 }
 
 .cta-section p,
 .cta-banner p {
-  color: var(--color-text-secondary);
+  color: var(--color-text-third);
   font-size: 1.1rem;
   margin-bottom: 2rem;
 }
