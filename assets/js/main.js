@@ -23,28 +23,27 @@
   // 2. LANGUAGE TOGGLE
   // ============================================
   function initLanguageToggle() {
-    const langBtns = document.querySelectorAll('.lang-btn');
+    const toggle = document.getElementById('langToggle');
     const html = document.documentElement;
+
+    if (!toggle) return;
 
     // Load saved preference
     const savedLang = localStorage.getItem('dermech-lang') || 'en';
     setLanguage(savedLang);
 
-    langBtns.forEach(btn => {
-      btn.addEventListener('click', function() {
-        const lang = this.dataset.lang;
-        setLanguage(lang);
-        localStorage.setItem('dermech-lang', lang);
-      });
+    toggle.addEventListener('click', function() {
+      const currentLang = html.classList.contains('lang-zh') ? 'zh' : 'en';
+      const newLang = currentLang === 'en' ? 'zh' : 'en';
+      setLanguage(newLang);
+      localStorage.setItem('dermech-lang', newLang);
     });
 
     function setLanguage(lang) {
       html.classList.toggle('lang-zh', lang === 'zh');
-      
-      // Update active button
-      langBtns.forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.lang === lang);
-      });
+
+      // Update button text
+      toggle.textContent = lang === 'en' ? 'EN | 中' : '中 | EN';
 
       // Swap all bilingual text nodes
       document.querySelectorAll('[data-en][data-zh]').forEach(el => {
@@ -111,35 +110,31 @@
   }
 
   // ============================================
-  // 5. MOBILE MENU
+  // 5. MOBILE NAV TOGGLE
   // ============================================
   function initMobileMenu() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navOverlay = document.querySelector('.nav-overlay');
-    const overlayLinks = document.querySelectorAll('.nav-overlay a');
+    const hamburger = document.getElementById('navHamburger');
+    const navLinks = document.querySelector('.nav-links');
 
-    if (!menuToggle || !navOverlay) return;
+    if (!hamburger || !navLinks) return;
 
-    menuToggle.addEventListener('click', function() {
-      menuToggle.classList.toggle('active');
-      navOverlay.classList.toggle('open');
-      document.body.style.overflow = navOverlay.classList.contains('open') ? 'hidden' : '';
+    hamburger.addEventListener('click', function() {
+      navLinks.classList.toggle('open');
+      document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
     });
 
     // Close on link click
-    overlayLinks.forEach(link => {
+    navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', function() {
-        menuToggle.classList.remove('active');
-        navOverlay.classList.remove('open');
+        navLinks.classList.remove('open');
         document.body.style.overflow = '';
       });
     });
 
     // Close on escape key
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && navOverlay.classList.contains('open')) {
-        menuToggle.classList.remove('active');
-        navOverlay.classList.remove('open');
+      if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
         document.body.style.overflow = '';
       }
     });
