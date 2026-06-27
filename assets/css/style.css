@@ -15,48 +15,55 @@ body {
   margin: 0;
   padding-top: 72px;
   font-family: var(--font-body);
-  color: var(--color-text-primary);
+  color: var(--color-text-on-light-primary);
+  background-color: var(--color-light-2);
   -webkit-font-smoothing: antialiased;
-
-  /* Siemens-style: dark charcoal base with subtle radial center lift */
-  background-color: var(--color-bg);
-  background-image:
-    radial-gradient(
-      ellipse 120% 60% at 50% 0%,
-      rgba(34, 34, 44, 0.9) 0%,
-      transparent 70%
-    );
-  background-attachment: fixed;
 }
 
 /* === CSS VARIABLES === */
 :root {
-  /* Base backgrounds — industrial gray scale */
-  --color-bg:          #b2b2b9;   /* Main page background — dark charcoal */
-  --color-bg-2:        #1C1C22;   /* Slightly lighter — alternate sections */
-  --color-bg-3:        #222228;   /* Cards, panels */
-  --color-surface:     #1C1C22;
-  --color-surface-2:   #222228;
+  /* === DARK ZONES (Hero, CTA, Footer, Nav) === */
+  --color-dark-1:    #0F1923;   /* Deepest navy — hero, footer */
+  --color-dark-2:    #162030;   /* Dark navy — CTA banners, dark sections */
+  --color-dark-3:    #1E2D3D;   /* Softer navy — dark cards, elevated dark panels */
 
-  /* Borders */
-  --color-border:        #2C2C34;
-  --color-border-strong: #3A3A44;
+  /* === LIGHT ZONES (Content sections, body) === */
+  --color-light-1:   #FFFFFF;   /* Pure white — card surfaces */
+  --color-light-2:   #F4F6F8;   /* Off-white — section backgrounds */
+  --color-light-3:   #E8ECF0;   /* Light gray — borders on light bg, dividers */
 
-  /* Accent */
-  --color-accent:        #1A56DB;
-  --color-accent-hover:  #1E40AF;
+  /* === ACCENT === */
+  --color-accent:        #1A56DB;   /* German Blue — CTAs, links, active */
+  --color-accent-hover:  #1343B8;
+  --color-accent-light:  #EEF3FC;   /* Accent tint for light bg highlights */
 
-  /* Text */
-  --color-text-primary:   #F0F0F2;
-  --color-text-secondary: #9A9AA8;
-  --color-text-muted:     #5A5A68;
+  /* === TEXT ON DARK BACKGROUNDS === */
+  --color-text-on-dark-primary:    #FFFFFF;
+  --color-text-on-dark-secondary:  #9BAFC4;
+  --color-text-on-dark-muted:      #4F6880;
 
-  /* Utility */
-  --color-white:  #FFFFFF;
-  --color-steel:  #7A8A9A;
+  /* === TEXT ON LIGHT BACKGROUNDS === */
+  --color-text-on-light-primary:   #0F1923;
+  --color-text-on-light-secondary: #4A6070;
+  --color-text-on-light-muted:     #8A9BAA;
 
-  /* Section divider line */
-  --color-divider: #2C2C34;
+  /* === BORDERS === */
+  --color-border-dark:   #1E3048;   /* Border on dark sections */
+  --color-border-light:  #D8E0E8;   /* Border on light sections */
+
+  /* === LEGACY ALIASES (keeps old variable names working) === */
+  --color-bg:          var(--color-dark-1);
+  --color-surface:     var(--color-dark-2);
+  --color-surface-2:   var(--color-dark-3);
+  --color-border:      var(--color-border-dark);
+  --color-text-primary:   var(--color-text-on-dark-primary);
+  --color-text-secondary: var(--color-text-on-dark-secondary);
+  --color-text-muted:     var(--color-text-on-dark-muted);
+
+  --color-white: #FFFFFF;
+  --color-divider: var(--color-border-dark);
+  --color-bg-2: var(--color-dark-2);
+  --color-bg-3: var(--color-light-1);
 
   --font-display: 'Barlow', sans-serif;
   --font-body:    'Inter', sans-serif;
@@ -134,7 +141,7 @@ p {
   right: 0;
   z-index: 1000;
   height: 72px;
-  background: rgba(22, 22, 26, 0.96);
+  background: rgba(15, 25, 35, 0.97);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border);
 }
@@ -361,13 +368,44 @@ p {
 
 .btn-primary {
   background: var(--color-accent);
-  color: var(--color-white);
-  border: 1px solid var(--color-accent);
+  color: #FFFFFF;
+  border: 2px solid var(--color-accent);
+  padding: 0.875rem 2rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .btn-primary:hover {
   background: var(--color-accent-hover);
   border-color: var(--color-accent-hover);
+}
+
+/* Secondary CTA — outline only */
+.btn-secondary {
+  background: transparent;
+  color: var(--color-text-on-dark-primary);
+  border: 2px solid var(--color-text-on-dark-primary);
+  padding: 0.875rem 2rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.08);
 }
 
 .btn-outline {
@@ -378,6 +416,13 @@ p {
 
 .btn-outline:hover {
   border-color: var(--color-accent);
+}
+
+/* Secondary on light background */
+.section-light .btn-secondary,
+.section-offwhite .btn-secondary {
+  color: var(--color-text-on-light-primary);
+  border-color: var(--color-text-on-light-primary);
 }
 
 /* === SECTION COMPONENTS === */
@@ -407,15 +452,15 @@ p {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 0; /* Shared borders */
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-light);
 }
 
 .card {
   padding: 3rem 2rem;
-  background: var(--color-bg);
-  border-right: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
-  transition: all 0.3s ease;
+  background: var(--color-light-1);
+  border-right: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border-light);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -426,8 +471,20 @@ p {
 }
 
 .card:hover {
-  background: var(--color-surface-2);
-  border-left: 4px solid var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 0 4px 24px rgba(26, 86, 219, 0.08);
+}
+
+.card h3,
+.service-card h3,
+.feature-card h3 {
+  color: var(--color-text-on-light-primary);
+}
+
+.card p,
+.service-card p,
+.feature-card p {
+  color: var(--color-text-on-light-secondary);
 }
 
 .card-icon {
@@ -468,27 +525,36 @@ p {
 .stats-bar {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  background: rgba(20, 20, 20, 0.92);
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
+  background: var(--color-dark-2);
+  border-top: 1px solid var(--color-border-dark);
+  border-bottom: 1px solid var(--color-border-dark);
 }
 
 .stat-item {
   padding: 3rem 2rem;
   text-align: center;
-  border-right: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border-dark);
 }
 
 .stat-item:last-child {
   border-right: none;
 }
 
-.stat-num {
+.stat-num,
+.stat-number {
+  color: var(--color-accent);
   font-family: var(--font-mono);
-  font-size: 3rem;
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
-  color: var(--color-white);
   display: block;
+}
+
+.stat-label {
+  color: var(--color-text-on-dark-secondary);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
 }
 
 /* === CONTACT FORM === */
@@ -503,36 +569,45 @@ p {
 }
 
 .form-group label {
+  color: var(--color-text-on-light-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
   display: block;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--color-text-muted);
   margin-bottom: 0.5rem;
-  text-transform: uppercase;
 }
 
-.form-group input, .form-group select, .form-group textarea {
+.form-group input,
+.form-group select,
+.form-group textarea {
   width: 100%;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  color: var(--color-white);
-  padding: 1rem;
+  background: var(--color-light-1);
+  border: 1px solid var(--color-border-light);
+  color: var(--color-text-on-light-primary);
+  padding: 0.875rem 1rem;
   font-family: var(--font-body);
+  font-size: 1rem;
+  border-radius: 0;
+  outline: none;
   transition: border-color 0.2s ease;
 }
 
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-  outline: none;
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 2px rgba(26, 86, 219, 0.2);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--color-text-on-light-muted);
 }
 
 /* === FOOTER === */
 footer {
-  background: var(--color-bg);
-  border-top: 1px solid var(--color-border);
+  background: var(--color-dark-1);
+  border-top: 1px solid var(--color-border-dark);
   padding: 64px 0 32px;
-  color: var(--color-text-secondary);
+  color: var(--color-text-on-dark-secondary);
 }
 
 .footer-grid {
@@ -542,39 +617,37 @@ footer {
   margin-bottom: 4rem;
 }
 
+.footer-brand,
 .footer-logo {
   font-family: var(--font-display);
-  font-weight: 700;
   font-size: 1.25rem;
-  color: var(--color-text-primary);
-  margin-bottom: 1rem;
+  font-weight: 600;
+  color: var(--color-text-on-dark-primary);
 }
 
-.footer-links {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+.footer-tagline {
+  color: var(--color-text-on-dark-muted);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
 }
 
-.footer-links a {
-  color: var(--color-text-secondary);
+footer a {
+  color: var(--color-text-on-dark-secondary);
   text-decoration: none;
-  font-size: 0.9rem;
   transition: color 0.2s ease;
 }
 
-.footer-links a:hover {
-  color: var(--color-white);
+footer a:hover {
+  color: var(--color-accent);
 }
 
 .copyright {
   text-align: center;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--color-text-muted);
+  color: var(--color-text-on-dark-muted);
   padding-top: 2rem;
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-border-dark);
 }
 
 /* === ANIMATIONS === */
@@ -590,37 +663,70 @@ footer {
 }
 
 
-/* === SECTION ALTERNATION & DIVIDERS === */
-section {
-  border-bottom: 1px solid var(--color-divider);
-  padding: 100px 0;
-}
-
-section:last-of-type {
-  border-bottom: none;
-}
-
-/* Even sections — slightly darker */
-section:nth-child(even) {
-  background-color: var(--color-bg);
-}
-
-/* Odd sections — slightly lighter */
-section:nth-child(odd) {
-  background-color: var(--color-bg-2);
-}
-
-/* Special dark emphasis sections (add class manually where needed) */
+/* === SECTION COLOR SYSTEM === */
 .section-dark {
-  background-color: var(--color-bg);
+  background-color: var(--color-dark-1);
+  color: var(--color-text-on-dark-primary);
+  border-bottom: 1px solid var(--color-border-dark);
 }
 
-.section-mid {
-  background-color: var(--color-bg-2);
+.section-dark h1,
+.section-dark h2,
+.section-dark h3,
+.section-dark h4 {
+  color: var(--color-text-on-dark-primary);
 }
 
-.section-raised {
-  background-color: var(--color-bg-3);
+.section-dark p,
+.section-dark li,
+.section-dark span {
+  color: var(--color-text-on-dark-secondary);
+}
+
+.section-dark .label,
+.section-dark .eyebrow {
+  color: var(--color-text-on-dark-muted);
+}
+
+/* NAVY section — slightly lighter dark, for "Why Choose" panels */
+.section-navy {
+  background-color: var(--color-dark-2);
+  color: var(--color-text-on-dark-primary);
+  border-bottom: 1px solid var(--color-border-dark);
+}
+
+.section-navy h2,
+.section-navy h3 {
+  color: var(--color-text-on-dark-primary);
+}
+
+.section-navy p {
+  color: var(--color-text-on-dark-secondary);
+}
+
+/* LIGHT section — clean white/off-white content areas */
+.section-light {
+  background-color: var(--color-light-1);
+  color: var(--color-text-on-light-primary);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.section-light h2,
+.section-light h3,
+.section-light h4 {
+  color: var(--color-text-on-light-primary);
+}
+
+.section-light p,
+.section-light li {
+  color: var(--color-text-on-light-secondary);
+}
+
+/* OFF-WHITE section — alternating content */
+.section-offwhite {
+  background-color: var(--color-light-2);
+  color: var(--color-text-on-light-primary);
+  border-bottom: 1px solid var(--color-border-light);
 }
 
 /* === HERO HEADLINE ACCENT BAR === */
@@ -633,66 +739,56 @@ section:nth-child(odd) {
   margin: 1.5rem auto 0;
 }
 
-/* === CARD ELEVATION SYSTEM === */
-.card,
-.service-card,
-.feature-card,
-.industry-card {
-  background: var(--color-bg-3);
-  border: 1px solid var(--color-border);
-  transition: border-color 0.2s ease, background 0.2s ease;
+/* Cards on dark sections get dark styling */
+.section-dark .card,
+.section-navy .card,
+.section-dark .service-card,
+.section-navy .service-card,
+.section-dark .feature-card,
+.section-navy .feature-card,
+.section-dark .industry-card,
+.section-navy .industry-card {
+  background: var(--color-dark-3);
+  border-color: var(--color-border-dark);
+  color: var(--color-text-on-dark-primary);
 }
 
-.card:hover,
-.service-card:hover,
-.feature-card:hover,
-.industry-card:hover {
+.section-dark .card h3,
+.section-navy .card h3,
+.section-dark .service-card h3,
+.section-navy .service-card h3,
+.section-dark .feature-card h3,
+.section-navy .feature-card h3,
+.section-dark .industry-card h3,
+.section-navy .industry-card h3 {
+  color: var(--color-text-on-dark-primary);
+}
+
+.section-dark .card p,
+.section-navy .card p,
+.section-dark .service-card p,
+.section-navy .service-card p,
+.section-dark .feature-card p,
+.section-navy .feature-card p,
+.section-dark .industry-card p,
+.section-navy .industry-card p {
+  color: var(--color-text-on-dark-secondary);
+}
+
+.section-dark .card:hover,
+.section-navy .card:hover,
+.section-dark .service-card:hover,
+.section-navy .service-card:hover,
+.section-dark .feature-card:hover,
+.section-navy .feature-card:hover,
+.section-dark .industry-card:hover,
+.section-navy .industry-card:hover {
   border-color: var(--color-accent);
-  background: rgba(34, 34, 40, 0.95);
 }
 
-/* === STATS BAR === */
-.stats-bar {
-  background: var(--color-bg);
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
-  padding: 48px 0;
-}
 
-.stat-number {
-  color: var(--color-accent);
-  font-family: var(--font-mono);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
-}
 
-.stat-label {
-  color: var(--color-text-secondary);
-  font-size: 0.8125rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
 
-/* === FOOTER === */
-footer {
-  background: var(--color-bg);
-  border-top: 1px solid var(--color-border);
-  padding: 64px 0 32px;
-  color: var(--color-text-secondary);
-}
-
-.footer-brand {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--color-text-primary);
-}
-
-.footer-tagline {
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-  margin-top: 0.5rem;
-}
 
 /* === RESPONSIVE — TABLET (max 1024px) === */
 @media (max-width: 1024px) {
