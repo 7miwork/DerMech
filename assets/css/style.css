@@ -558,7 +558,6 @@ p {
   font-weight: 600;
 }
 
-/* === BRAND TICKER === */
 .brand-ticker,
 .ticker-section {
   background-color: #FFFFFF;
@@ -567,6 +566,9 @@ p {
   padding: 20px 0;
   overflow: hidden;
   white-space: nowrap;
+  display: flex;              /* NEU */
+  justify-content: center;   /* NEU */
+  align-items: center;       /* NEU */
 }
 
 .ticker-content,
@@ -577,9 +579,10 @@ p {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-text-muted);
-  display: inline-flex;
+  display: flex;              /* GEÄNDERT: war inline-flex */
   gap: 3rem;
   align-items: center;
+  justify-content: center;   /* NEU */
 }
 
 .ticker-separator {
