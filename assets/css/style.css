@@ -310,6 +310,9 @@ p {
   }
   .nav-links.open {
     display: flex;
+    background: rgba(10, 18, 28, 0.97);  /* dunkler Hintergrund */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
   .nav-container {
     padding: 0 1.25rem;
