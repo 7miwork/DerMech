@@ -1,69 +1,64 @@
 /* === RESET & BASE === */
-*, *::before, *::after {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  border-radius: 0 !important; /* STRICT RULE: No rounded corners anywhere */
 }
 
 html {
   scroll-behavior: smooth;
   font-size: 16px;
-  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
   padding-top: 6em;
   font-family: var(--font-body);
-  color: var(--color-text-body);
+  color: var(--color-text-third);
   background-color: var(--color-bg);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.7;
-}
-
-img, picture, video, canvas, svg {
-  max-width: 100%;
-  height: auto;
-  display: block;
 }
 
 /* === CSS VARIABLES === */
 :root {
-  /* Brand */
-  --brand: #1A56DB;
-  --brand-hover: #1744B8;
-  --brand-light: #EBF4FF;
-  --brand-tint: #F5F9FF;
+  /* Navigation — stays dark */
+  --nav-bg: #0F1923;
+  --nav-border: #1E3048;
+  --nav-text: #9BAFC4;
+  --nav-text-active: #FFFFFF;
 
-  /* Backgrounds */
-  --color-bg: #FFFFFF;
-  --color-bg-alt: #F8F9FA;
-  --color-surface: #FFFFFF;
+  /* Page backgrounds — all light */
+  --color-bg:        #FFFFFF;
+  --color-bg-alt:    #F5F7FA;
+  --color-bg-accent: #EEF2F7;
 
-  /* Text */
-  --color-headline: #1A1A2E;
-  --color-text-body: #4A4A68;
-  --color-text-muted: #6B7280;
+  /* Text on light backgrounds */
+  --color-text-primary:   #bbcdd4d6;
+  --color-text-secondary: #bbcdd4d6;
+  --color-text-third:     #01425bd6;
+  --color-text-muted:     #8A9BAA;
 
-  /* Borders */
-  --color-border: #E2E8F0;
+  /* Accent */
+  --color-accent:       #1A56DB;
+  --color-accent-hover: #1343B8;
+  --color-accent-tint:  #EEF3FC;
 
-  /* Navbar / Footer */
-  --nav-footer-bg: #1A56DB;
-  --nav-footer-text: #FFFFFF;
-  --nav-footer-muted: rgba(255, 255, 255, 0.85);
-  --nav-footer-hover: rgba(255, 255, 255, 0.7);
-  --nav-link-active-bg: #2A6FE0;
-  --nav-height: 72px;
+  /* Borders on light bg */
+  --color-border: #DDE3EA;
+  --color-border-strong: #B8C4CE;
+
+  /* Hero overlay — dark only behind text, not full section */
+  --hero-overlay: rgba(10, 18, 28, 0.72);
 
   /* Fonts */
-  --font-display: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
-  --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+  --font-display: 'Barlow', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
 
   /* Layout */
   --max-width: 1280px;
+  --section-padding: 120px 0;
   --gutter: 24px;
 }
 
@@ -132,9 +127,11 @@ p {
   left: 0;
   right: 0;
   z-index: 1000;
-  height: var(--nav-height);
-  background: var(--nav-footer-bg);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  min-height: 96px;
+  padding: 0.25em 0;
+  background: rgba(15, 25, 35, 0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .nav-container {
@@ -167,9 +164,9 @@ p {
 
 .nav-brand-text {
   font-family: var(--font-display);
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
-  font-weight: 700;
-  color: var(--nav-footer-text);
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
   white-space: nowrap;
   text-align: center;
 }
@@ -194,36 +191,23 @@ p {
 
 .nav-links a {
   font-family: var(--font-body);
-  font-size: clamp(0.85rem, 1.3vw, 1.05rem);
+  font-size: 1.0rem;
   font-weight: 500;
-  color: var(--nav-footer-text);
+  color: var(--color-text-secondary);
   text-decoration: none;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   text-align: center;
   white-space: nowrap;
   transition: color 0.2s ease;
-  padding: 0.5rem 0;
-  position: relative;
+  padding: 0.25rem 0;
+  border-bottom: 2px solid transparent;
 }
 
-.nav-links a:hover {
-  color: var(--nav-footer-hover);
-}
-
+.nav-links a:hover,
 .nav-links a.active {
-  color: #FFFFFF;
-}
-
-.nav-links a.active::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -2px;
-  height: 2px;
-  background: #FFFFFF;
-  border-radius: 2px;
+  color: var(--color-text-primary);
+  border-bottom-color: var(--color-accent);
 }
 
 .nav-right {
@@ -235,28 +219,28 @@ p {
 }
 
 .lang-toggle {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  color: var(--nav-footer-text);
+  background: rgb(10, 74, 10);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
   font-family: var(--font-body);
-  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  font-size: 1.0rem;
   font-weight: 500;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   padding: 0.4rem 0.75rem;
   cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease;
 }
 
 .lang-toggle:hover {
-  border-color: #FFFFFF;
-  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-accent);
+  color: var(--color-text-primary);
 }
 
 .nav-hamburger {
   display: none;
   background: transparent;
   border: none;
-  color: var(--nav-footer-text);
+  color: var(--color-text-primary);
   font-size: 1.5rem;
   cursor: pointer;
   padding: 0.25rem;
@@ -267,11 +251,11 @@ p {
   .nav-links {
     display: none;
     position: fixed;
-    top: var(--nav-height);
+    top: 6.5em;
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--nav-footer-bg);
+    background: var(--color-bg);
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -687,10 +671,10 @@ p {
 
 /* === FOOTER === */
 footer {
-  background: var(--nav-footer-bg);
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: #0D1B2A;
+  border-top: 1px solid #1E3048;
   padding: 60px 0 32px;
-  color: var(--nav-footer-muted);
+  color: #9BAFC4;
 }
 
 .footer-grid {
@@ -710,24 +694,24 @@ footer {
 
 .footer-tagline {
   font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.75);
+  color: #4F6880;
 }
 
 footer a {
-  color: var(--nav-footer-muted);
+  color: #9BAFC4;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 footer a:hover {
-  color: var(--nav-footer-hover);
+  color: var(--color-accent);
 }
 
 footer .footer-copy,
 .copyright {
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.7);
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  color: #4F6880;
+  border-top: 1px solid #1E3048;
   padding-top: 1.5rem;
   margin-top: 2rem;
   text-align: center;
