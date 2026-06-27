@@ -140,6 +140,9 @@ p {
   background: rgba(15, 25, 35, 0.97);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border);
+  box-sizing: border-box;
+  width: 100%;
+  overflow: visible;
 }
 
 .nav-container {
@@ -152,6 +155,8 @@ p {
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .nav-brand {
@@ -244,14 +249,71 @@ p {
   color: var(--color-text-primary);
 }
 
+/* Hamburger standardmäßig verstecken auf Desktop */
 .nav-hamburger {
   display: none;
-  background: transparent;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: none;
   border: none;
-  color: var(--color-text-primary);
-  font-size: 1.5rem;
   cursor: pointer;
-  padding: 0.25rem;
+  padding: 0;
+  z-index: 1001;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #FFFFFF;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Hamburger nur auf Mobile/Tablet anzeigen */
+@media (max-width: 1024px) {
+  .nav-hamburger {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #FFFFFF;
+    border-radius: 2px;
+  }
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #0F1923;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    z-index: 999;
+    padding-top: 80px;
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .nav-container {
+    padding: 0 1.25rem;
+  }
 }
 
 /* Mobile */
@@ -277,10 +339,6 @@ p {
 
   .nav-links a {
     font-size: 1.25rem;
-  }
-
-  .nav-hamburger {
-    display: block;
   }
 
   .nav-brand-text {
@@ -1050,6 +1108,25 @@ footer .footer-copy,
   }
   .section {
     padding: 2.5rem 1rem;
+  }
+}
+
+/* Language toggle buttons */
+.btn-lang-mobile {
+  display: none;
+}
+
+/* Mobile/Tablet: Desktop button hide, mobile version in menu */
+@media (max-width: 1024px) {
+  .btn-lang-desktop {
+    display: none;
+  }
+  .btn-lang-mobile {
+    display: inline-flex;
+    margin-top: 1rem;
+  }
+  .nav-lang-mobile {
+    list-style: none;
   }
 }
 

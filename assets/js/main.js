@@ -24,6 +24,7 @@
   // ============================================
   function initLanguageToggle() {
     const toggle = document.getElementById('langToggle');
+    const toggleMobile = document.getElementById('langToggleMobile');
     const html = document.documentElement;
 
     if (!toggle) return;
@@ -39,11 +40,24 @@
       localStorage.setItem('dermech-lang', newLang);
     });
 
+    if (toggleMobile) {
+      toggleMobile.addEventListener('click', function() {
+        const currentLang = html.classList.contains('lang-zh') ? 'zh' : 'en';
+        const newLang = currentLang === 'en' ? 'zh' : 'en';
+        setLanguage(newLang);
+        localStorage.setItem('dermech-lang', newLang);
+      });
+    }
+
     function setLanguage(lang) {
       html.classList.toggle('lang-zh', lang === 'zh');
 
       // Update button text
       toggle.textContent = lang === 'en' ? 'EN | 中' : '中 | EN';
+
+      if (toggleMobile) {
+        toggleMobile.textContent = lang === 'en' ? 'EN | 中' : '中 | EN';
+      }
 
       // Swap all bilingual text nodes
       document.querySelectorAll('[data-en][data-zh]').forEach(el => {
