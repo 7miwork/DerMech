@@ -1,64 +1,71 @@
 /* === RESET & BASE === */
-* {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  border-radius: 0 !important; /* STRICT RULE: No rounded corners anywhere */
 }
 
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
   padding-top: 6em;
   font-family: var(--font-body);
-  color: var(--color-text-third);
+  color: var(--color-text-body);
   background-color: var(--color-bg);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.7;
+}
+
+img, picture, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* === CSS VARIABLES === */
 :root {
-  /* Navigation — stays dark */
-  --nav-bg: #0F1923;
-  --nav-border: #1E3048;
-  --nav-text: #9BAFC4;
-  --nav-text-active: #FFFFFF;
+  /* Brand */
+  --brand: #1A56DB;
+  --brand-hover: #1744B8;
+  --brand-light: #EBF4FF;
+  --brand-tint: #F5F9FF;
 
-  /* Page backgrounds — all light */
-  --color-bg:        #FFFFFF;
-  --color-bg-alt:    #F5F7FA;
-  --color-bg-accent: #EEF2F7;
+  /* Backgrounds */
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #F8F9FA;
+  --color-surface: #FFFFFF;
 
-  /* Text on light backgrounds */
-  --color-text-primary:   #bbcdd4d6;
-  --color-text-secondary: #bbcdd4d6;
-  --color-text-third:     #01425bd6;
-  --color-text-muted:     #8A9BAA;
+  /* Text */
+  --color-headline: #1A1A2E;
+  --color-text-body: #4A4A68;
+  --color-text-muted: #6B7280;
 
-  /* Accent */
-  --color-accent:       #1A56DB;
-  --color-accent-hover: #1343B8;
-  --color-accent-tint:  #EEF3FC;
+  /* Borders */
+  --color-border: #E2E8F0;
 
-  /* Borders on light bg */
-  --color-border: #DDE3EA;
-  --color-border-strong: #B8C4CE;
-
-  /* Hero overlay — dark only behind text, not full section */
-  --hero-overlay: rgba(10, 18, 28, 0.72);
+  /* Navbar / Footer */
+  --nav-footer-bg: #1A56DB;
+  --brand: #1A56DB;
+  --brand-hover: #1744B8;
+  --nav-footer-text: #FFFFFF;
+  --nav-footer-muted: rgba(255, 255, 255, 0.8);
+  --nav-footer-hover: rgba(255, 255, 255, 0.7);
+  --nav-link-active-bg: #2563EB;
+  --nav-height: 80px;
 
   /* Fonts */
-  --font-display: 'Barlow', sans-serif;
-  --font-body:    'Inter', sans-serif;
-  --font-mono:    'JetBrains Mono', monospace;
+  --font-display: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Consolas', monospace;
 
   /* Layout */
   --max-width: 1280px;
-  --section-padding: 120px 0;
   --gutter: 24px;
 }
 
