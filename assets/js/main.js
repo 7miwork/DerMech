@@ -110,6 +110,30 @@
   }
 
   // ============================================
+  // 5. DYNAMIC NAV HEIGHT
+  // ============================================
+  function initDynamicNavHeight() {
+    const nav = document.querySelector('nav');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (!nav) return;
+    
+    function updateNavHeight() {
+      const navHeight = nav.offsetHeight;
+      document.body.style.paddingTop = navHeight + 'px';
+      if (navLinks) {
+        navLinks.style.top = navHeight + 'px';
+      }
+    }
+    
+    updateNavHeight();
+    window.addEventListener('resize', updateNavHeight);
+    window.addEventListener('orientationchange', function() {
+      setTimeout(updateNavHeight, 100);
+    });
+  }
+
+  // ============================================
   // 5. MOBILE NAV TOGGLE
   // ============================================
   function initMobileMenu() {
@@ -215,6 +239,7 @@
     initLanguageToggle();
     initActiveNav();
     initScrollReveal();
+    initDynamicNavHeight();
     initMobileMenu();
     initContactForm();
   });

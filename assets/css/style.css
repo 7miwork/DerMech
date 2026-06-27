@@ -13,7 +13,7 @@ html {
 
 body {
   margin: 0;
-  padding-top: var(--nav-height);
+  padding-top: 6em;
   font-family: var(--font-body);
   color: var(--color-text-primary);
   background-color: var(--color-bg);
@@ -59,7 +59,6 @@ body {
   --max-width: 1280px;
   --section-padding: 120px 0;
   --gutter: 24px;
-  --nav-height: 100px;
 }
 
 /* === TYPOGRAPHY === */
@@ -127,7 +126,8 @@ p {
   left: 0;
   right: 0;
   z-index: 1000;
-  height: var(--nav-height);
+  min-height: 96px;
+  padding: 0.25em 0;
   background: rgba(15, 25, 35, 0.97);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border);
@@ -167,6 +167,7 @@ p {
   font-weight: 600;
   color: var(--color-text-primary);
   white-space: nowrap;
+  text-align: center;
 }
 
 .nav-links {
@@ -195,6 +196,7 @@ p {
   text-decoration: none;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  text-align: center;
   white-space: nowrap;
   transition: color 0.2s ease;
   padding: 0.25rem 0;
@@ -248,7 +250,7 @@ p {
   .nav-links {
     display: none;
     position: fixed;
-    top: 88px;
+    top: 6.5em;
     left: 0;
     right: 0;
     bottom: 0;
