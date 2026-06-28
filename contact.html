@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+
   <meta name="description" data-en="Contact DerMech Solution - Book a consultation for industrial automation, engineering design, or engineering education services" data-zh="聯繫德機智造 - 預約工業自動化、工程設計或工程教育諮詢服務">
   <title data-en="Contact | DerMech Solution" data-zh="聯繫我們 | 德機智造">Contact | DerMech Solution</title>
   
@@ -123,7 +124,9 @@
         
         <!-- Right: Contact Form -->
         <div>
-          <form id="contact-form" class="reveal" style="padding: 2rem; background: var(--color-surface); border: 1px solid var(--color-border);">
+          <form id="contact-form" class="reveal" style="padding: 2rem; background: var(--color-surface); border: 1px solid var(--color-border);" action="https://formspree.io/f/mlgynlog" method="POST">
+            <input type="hidden" name="_replyto" value="info@dermech-etc.com">
+            <input type="hidden" name="_subject" value="New inquiry from dermech-etc.com">
             <div class="form-group">
               <label for="name" data-en="Name | 姓名" data-zh="姓名 | Name">Name | 姓名</label>
               <input type="text" id="name" name="name" required data-en="Your full name" data-zh="您的全名">
