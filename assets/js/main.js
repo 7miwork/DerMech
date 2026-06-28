@@ -34,34 +34,45 @@
     setLanguage(savedLang);
 
     toggle.addEventListener('click', function() {
-      const currentLang = html.classList.contains('lang-zh') ? 'zh' : 'en';
-      const newLang = currentLang === 'en' ? 'zh' : 'en';
+      const currentLang = html.classList.contains('lang-zh') ? 'zh' : (html.classList.contains('lang-de') ? 'de' : 'en');
+      const newLang = currentLang === 'en' ? 'de' : (currentLang === 'de' ? 'zh' : 'en');
       setLanguage(newLang);
       localStorage.setItem('dermech-lang', newLang);
     });
 
     if (toggleMobile) {
       toggleMobile.addEventListener('click', function() {
-        const currentLang = html.classList.contains('lang-zh') ? 'zh' : 'en';
-        const newLang = currentLang === 'en' ? 'zh' : 'en';
+        const currentLang = html.classList.contains('lang-zh') ? 'zh' : (html.classList.contains('lang-de') ? 'de' : 'en');
+        const newLang = currentLang === 'en' ? 'de' : (currentLang === 'de' ? 'zh' : 'en');
         setLanguage(newLang);
         localStorage.setItem('dermech-lang', newLang);
       });
     }
 
     function setLanguage(lang) {
+      html.classList.remove('lang-zh', 'lang-de');
       html.classList.toggle('lang-zh', lang === 'zh');
+      html.classList.toggle('lang-de', lang === 'de');
 
       // Update button text
-      toggle.textContent = lang === 'en' ? 'EN | 中' : '中 | EN';
+      const buttonTexts = {
+        'en': 'EN | DE | 中',
+        'de': 'DE | EN | 中',
+        'zh': '中 | EN | DE'
+      };
+      toggle.textContent = buttonTexts[lang];
 
       if (toggleMobile) {
-        toggleMobile.textContent = lang === 'en' ? 'EN | 中' : '中 | EN';
+        toggleMobile.textContent = buttonTexts[lang];
       }
 
       // Swap all bilingual text nodes
-      document.querySelectorAll('[data-en][data-zh]').forEach(el => {
-        const text = lang === 'zh' ? el.dataset.zh : el.dataset.en;
+      document.querySelectorAll('[data-en][data-de][data-zh]').forEach(el => {
+        let text;
+        if (lang === 'zh') text = el.dataset.zh;
+        else if (lang === 'de') text = el.dataset.de;
+        else text = el.dataset.en;
+        
         if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') {
           if (el.placeholder !== undefined) {
             el.placeholder = text;
@@ -74,7 +85,7 @@
       });
 
       // Update lang attribute for accessibility
-      html.setAttribute('lang', lang === 'zh' ? 'zh-Hant' : 'en');
+      html.setAttribute('lang', lang === 'zh' ? 'zh-Hant' : lang);
     }
   }
 
