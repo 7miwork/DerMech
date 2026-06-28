@@ -1,51 +1,76 @@
 # DerMech Solution — Official Website
 
-**德機智造 | Engineering Beyond Boundaries**
+> German Engineering Consulting for Industrial Automation, CE/DIN Standards Compliance, and Engineering Education in Taiwan and Asia.
 
-Premium bilingual corporate website for DerMech Solution, a German-led engineering consulting company specializing in industrial automation, mechanical design, and engineering education.
+## Overview
 
-## Pages
+Static website for DerMech Solution (dermech-etc.com), a German mechanical engineering consultancy bridging German engineering rigor with Asian manufacturing agility.
 
-- `index.html` — Homepage with hero, stats, services overview, workflow, industries preview
-- `about.html` — About & Founder Profile (Michael Lison)
-- `services.html` — Three Core Services (Automation Consulting, Engineering Design, Engineering Education)
-- `industries.html` — 12 Industries Served
-- `standards.html` — Engineering Standards & Full 8-Phase Workflow
-- `contact.html` — Contact Form with Validation
+Built with: HTML5 · CSS3 · Vanilla JavaScript · No frameworks · No build tools
 
-## Tech Stack
+## Project Structure
 
-Pure HTML5 + CSS3 + Vanilla JavaScript. No build tools, no frameworks.
-
-- One shared CSS file: `assets/css/style.css`
-- One shared JS file: `assets/js/main.js`
-- All pages in root directory
-- Font loading via Google Fonts CDN
-- No external UI libraries, no Bootstrap, no Tailwind
-
-## Development
-
-Open `index.html` directly in a browser, or serve with any local HTTP server:
-
-```bash
-python -m http.server 8000
 ```
-
-Then visit `http://localhost:8000`
-
-## Brand
-
-- **Primary color:** #1A56DB (German Blue)
-- **Typography:** Barlow (display) + Inter (body) + JetBrains Mono (technical)
-- **Design language:** German industrial, Swiss grid, dark theme, zero rounded corners
+Z:\Codes\DerMech\
+├── index.html
+├── about.html
+├── services.html
+├── industries.html
+├── standards.html
+├── contact.html
+├── _tmp_css_test.txt
+├── assets/
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   └── main.js
+│   └── img/
+│       ├── logo.jpg
+│       ├── 0A824CF5-811C-43F0-B132-735D2DDA64D2.jpg
+│       ├── factory-automation-agv.jpg
+│       ├── robot-arm-production.jpg
+│       ├── manufacturing-facility.jpg
+│       ├── cad-engineering-design.jpg
+│       ├── technical-blueprint.jpg
+│       ├── digital-command-center.jpg
+│       ├── cnc-precision-machining.jpg
+│       └── quality-control-measurement.jpg
+└── image/
+    ├── 1.PNG
+    ├── 2.PNG
+    ├── 3.PNG
+    ├── 4.PNG
+    ├── 5.PNG
+    ├── 6.PNG
+    ├── 7.PNG
+    └── 8.PNG
+```
 
 ## Features
 
-- **Bilingual (EN/ZH):** All content in English and Traditional Chinese via `data-en`/`data-zh` attributes
-- **Language toggle:** Persists in localStorage
-- **Sticky nav:** Scroll effect with backdrop blur
-- **Scroll reveal:** IntersectionObserver animations
-- **Mobile menu:** Full-screen overlay
-- **Contact form:** Client-side validation with success state
-- **Responsive:** 1440px, 1024px, 768px, 375px breakpoints
-- **Accessibility:** Focus-visible outlines, semantic HTML, reduced motion support# DerMech
+- Bilingual (DE/EN/ZH) language switching via data attributes
+- Responsive design across mobile, tablet, and desktop breakpoints
+- Mobile hamburger navigation menu
+- Service sections: Industrial Automation · Engineering Design · CE/DIN Compliance · Engineering Education
+- Contact form
+- No external dependencies (self-contained static site)
+
+## Deployment
+
+Hosted as a static site. No build step required — open index.html directly or deploy any static host (e.g. GitHub Pages, Netlify).
+
+## Standards Referenced
+
+- DIN EN ISO 9001
+- DIN EN 61355
+- ISO 128
+- CE Marking Directive
+
+## License
+
+MIT License — see LICENSE file for details.
+
+## Contact
+
+Website: https://dermech-etc.com
+GitHub: https://github.com/7miwork/DerMech
