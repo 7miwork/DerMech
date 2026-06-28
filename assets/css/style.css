@@ -706,6 +706,8 @@ p {
   background-color: #FFFFFF;
   border-bottom: 1px solid var(--color-border);
   padding: 60px 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .stat-item {
@@ -973,7 +975,7 @@ footer .footer-copy,
 .feature-card,
 .industry-card {
   background: #FFFFFF;
-  border: 1px solid var(--color-border);
+  border: 1px solid #DDE3EA;
   color: var(--color-text-third);
   padding: 2rem;
   transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
@@ -1010,7 +1012,7 @@ footer .footer-copy,
 .section-offwhite .card,
 .section-offwhite .service-card {
   background: #FFFFFF;
-  border-color: var(--color-border);
+  border-color: #DDE3EA;
 }
 
 /* === CTA BANNER === */
@@ -1029,17 +1031,9 @@ footer .footer-copy,
   font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 700;
   color: var(--color-text-third);
+  line-height: 1.1;
   margin-bottom: 1rem;
 }
-
-.cta-section p,
-.cta-banner p {
-  color: var(--color-text-third);
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
-
-
 
 
 
@@ -1198,5 +1192,374 @@ footer .footer-copy,
     transition: none !important;
     animation: none !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* === NEW PAGE STYLES === */
+
+/* FAQ Accordion */
+.faq-item {
+  border: 1px solid var(--color-border);
+  margin-bottom: 1rem;
+  background: #FFFFFF;
+  transition: border-color 0.2s ease;
+}
+
+.faq-item:hover {
+  border-color: var(--color-accent);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 1.5rem 2rem;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-third);
+  transition: color 0.2s ease;
+}
+
+.faq-question:hover {
+  color: var(--color-accent);
+}
+
+.faq-icon {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--color-accent);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 500px;
+}
+
+.faq-answer-content {
+  padding: 0 2rem 1.5rem;
+  color: var(--color-text-third);
+  line-height: 1.7;
+}
+
+.faq-answer-content p {
+  margin-bottom: 0;
+}
+
+/* Case Study Cards */
+.case-study {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  padding: 3rem;
+  margin-bottom: 3rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.case-study:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 8px 32px rgba(26, 86, 219, 0.10);
+}
+
+.case-study-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.case-study-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.case-study-tag {
+  background: var(--color-accent-tint);
+  color: var(--color-accent);
+  padding: 0.25rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.case-study-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: var(--color-text-third);
+  margin-bottom: 0.5rem;
+}
+
+.case-study-section {
+  margin-bottom: 2rem;
+}
+
+.case-study-section h4 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.case-study-section p,
+.case-study-section li {
+  color: var(--color-text-third);
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+}
+
+.case-study-section ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.case-study-section ul li {
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.case-study-section ul li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.case-image-placeholder {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  padding: 3rem;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  margin-top: 1rem;
+}
+
+/* Resource Cards */
+.resource-card {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  padding: 2rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.resource-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 8px 32px rgba(26, 86, 219, 0.10);
+  transform: translateY(-2px);
+}
+
+.resource-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-third);
+  margin-bottom: 0.25rem;
+}
+
+.resource-card p {
+  font-size: 0.95rem;
+  color: var(--color-text-third);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.resource-meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Legal Page Styles */
+.legal-section {
+  margin-bottom: 3rem;
+}
+
+.legal-section h2 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--color-text-third);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-accent);
+}
+
+.legal-section h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-third);
+  margin: 1.5rem 0 0.75rem;
+}
+
+.legal-section p,
+.legal-section li {
+  color: var(--color-text-third);
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+.legal-section ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.legal-section ul li {
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.legal-section ul li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}
+
+.legal-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.legal-info-item {
+  padding: 1.5rem;
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+}
+
+.legal-info-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+}
+
+.legal-info-value {
+  font-size: 1rem;
+  color: var(--color-text-third);
+  line-height: 1.6;
+}
+
+/* Cookie table */
+.cookie-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+}
+
+.cookie-table th,
+.cookie-table td {
+  padding: 1rem 1.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cookie-table th {
+  background: var(--color-bg-alt);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-third);
+}
+
+.cookie-table td {
+  color: var(--color-text-third);
+  line-height: 1.6;
+}
+
+.cookie-table code {
+  background: var(--color-bg-alt);
+  padding: 0.2rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  border: 1px solid var(--color-border);
+}
+
+/* Responsive for legal grid */
+@media (max-width: 768px) {
+  .legal-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Newsletter form in resources */
+.newsletter-form {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.newsletter-form input {
+  flex: 1;
+  min-width: 250px;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--color-border);
+  background: #FFFFFF;
+  color: var(--color-text-third);
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+.newsletter-form input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+/* Resource section layout */
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+@media (max-width: 1024px) {
+  .resource-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .resource-grid {
+    grid-template-columns: 1fr;
   }
 }
