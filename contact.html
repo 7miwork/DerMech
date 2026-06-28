@@ -135,7 +135,8 @@
               <textarea id="message" name="message" rows="5" required data-en="Describe your project, challenges, and objectives. Include your contact details so we can reach you." data-zh="描述您的專案、挑戰與目標。請附上您的聯絡資訊以便我們回覆。">Describe your project, challenges, and objectives. Include your contact details so we can reach you.</textarea>
             </div>
             
-            <a id="mailto-btn" href="#" class="btn btn-primary" style="width: 100%; padding: 1rem 2rem; font-size: 1rem; display: block; text-align: center; text-decoration: none;" data-en="Send Message" data-zh="送出訊息">Send Message</a>
+            <button type="button" id="send-btn" class="btn btn-primary" style="width: 100%; padding: 1rem 2rem; font-size: 1rem;" data-en="Send Message" data-zh="送出訊息">Send Message</button>
+            <div id="form-feedback" style="display:none; margin-top: 1rem; padding: 1rem; text-align: center; font-family: var(--font-mono); font-size: 0.875rem;"></div>
           </form>
         </div>
       </div>
@@ -176,15 +177,54 @@
   <script src="assets/js/main.js"></script>
 
   <script>
-    document.getElementById('mailto-btn').addEventListener('click', function(e) {
-      e.preventDefault();
-      const subject = document.getElementById('subject').value || 'New inquiry from dermech-etc.com';
-      const message = document.getElementById('message').value;
+    document.getElementById('send-btn').addEventListener('click', function() {
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const feedback = document.getElementById('form-feedback');
+      const btn = document.getElementById('send-btn');
 
-      const encodedSubject = encodeURIComponent(subject);
-      const encodedBody = encodeURIComponent(message);
+      if (!message) {
+        feedback.style.display = 'block';
+        feedback.style.color = 'var(--color-error, #ff4444)';
+        feedback.style.border = '1px solid var(--color-error, #ff4444)';
+        feedback.textContent = 'Please enter a message.';
+        return;
+      }
 
-      window.location.href = 'mailto:info@dermech-etc.com?subject=' + encodedSubject + '&body=' + encodedBody;
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      feedback.style.display = 'none';
+
+      const formData = new FormData();
+      formData.append('subject', subject || 'New inquiry from dermech-etc.com');
+      formData.append('message', message);
+
+      fetch('mail.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          feedback.style.display = 'block';
+          feedback.style.color = 'var(--color-accent)';
+          feedback.style.border = '1px solid var(--color-accent)';
+          feedback.textContent = 'Message sent successfully. We will respond within 24 business hours.';
+          document.getElementById('subject').value = '';
+          document.getElementById('message').value = '';
+          btn.textContent = 'Message Sent';
+        } else {
+          throw new Error(data.message);
+        }
+      })
+      .catch(err => {
+        feedback.style.display = 'block';
+        feedback.style.color = 'var(--color-error, #ff4444)';
+        feedback.style.border = '1px solid var(--color-error, #ff4444)';
+        feedback.textContent = 'Failed to send. Please email us directly at info@dermech-etc.com';
+        btn.disabled = false;
+        btn.textContent = 'Send Message';
+      });
     });
   </script>
 
