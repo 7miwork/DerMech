@@ -126,13 +126,39 @@
         <div>
           <form id="contact-form" class="reveal" style="padding: 2rem; background: var(--color-surface); border: 1px solid var(--color-border);">
             <div class="form-group">
-              <label for="subject" data-en="Subject | 主旨" data-zh="主旨 | Subject">Subject | 主旨</label>
-              <input type="text" id="subject" name="subject" data-en="What is your inquiry about?" data-zh="您的詢問主題是什麼？">
+              <label for="name" data-en="Name" data-zh="姓名">Name</label>
+              <input type="text" id="name" name="name" required placeholder="Your full name">
             </div>
-            
+
             <div class="form-group">
-              <label for="message" data-en="Message | 訊息" data-zh="訊息 | Message">Message | 訊息</label>
-              <textarea id="message" name="message" rows="5" required data-en="Describe your project, challenges, and objectives. Include your contact details so we can reach you." data-zh="描述您的專案、挑戰與目標。請附上您的聯絡資訊以便我們回覆。">Describe your project, challenges, and objectives. Include your contact details so we can reach you.</textarea>
+              <label for="company" data-en="Company" data-zh="公司">Company</label>
+              <input type="text" id="company" name="company" placeholder="Company or organization name">
+            </div>
+
+            <div class="form-group">
+              <label for="email" data-en="Email" data-zh="電子郵件">Email</label>
+              <input type="email" id="email" name="email" required placeholder="your@email.com">
+            </div>
+
+            <div class="form-group">
+              <label for="service" data-en="Service Interest" data-zh="服務項目">Service Interest</label>
+              <select id="service" name="service">
+                <option value="" data-en="Select a service" data-zh="請選擇服務">Select a service</option>
+                <option value="Industrial Automation Consulting" data-en="Industrial Automation Consulting" data-zh="工業自動化顧問">Industrial Automation Consulting</option>
+                <option value="Full-Stack Engineering Design" data-en="Full-Stack Engineering Design" data-zh="全方位工程設計">Full-Stack Engineering Design</option>
+                <option value="Engineering Education" data-en="Engineering Education" data-zh="工程教育">Engineering Education</option>
+                <option value="General Inquiry" data-en="General Inquiry" data-zh="一般詢問">General Inquiry</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="subject" data-en="Subject" data-zh="主旨">Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="What is your inquiry about?">
+            </div>
+
+            <div class="form-group">
+              <label for="message" data-en="Message" data-zh="訊息">Message</label>
+              <textarea id="message" name="message" rows="5" required placeholder="Describe your project, challenges, and objectives. Include any relevant details."></textarea>
             </div>
             
             <button type="button" id="send-btn" class="btn btn-primary" style="width: 100%; padding: 1rem 2rem; font-size: 1rem;" data-en="Send Message" data-zh="送出訊息">Send Message</button>
@@ -178,16 +204,20 @@
 
   <script>
     document.getElementById('send-btn').addEventListener('click', function() {
+      const name = document.getElementById('name').value.trim();
+      const company = document.getElementById('company').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const service = document.getElementById('service').value;
       const subject = document.getElementById('subject').value.trim();
       const message = document.getElementById('message').value.trim();
       const feedback = document.getElementById('form-feedback');
       const btn = document.getElementById('send-btn');
 
-      if (!message) {
+      if (!name || !email || !message) {
         feedback.style.display = 'block';
         feedback.style.color = 'var(--color-error, #ff4444)';
         feedback.style.border = '1px solid var(--color-error, #ff4444)';
-        feedback.textContent = 'Please enter a message.';
+        feedback.textContent = 'Please fill in Name, Email and Message.';
         return;
       }
 
@@ -196,6 +226,10 @@
       feedback.style.display = 'none';
 
       const formData = new FormData();
+      formData.append('name', name);
+      formData.append('company', company);
+      formData.append('email', email);
+      formData.append('service', service);
       formData.append('subject', subject || 'New inquiry from dermech-etc.com');
       formData.append('message', message);
 
@@ -210,6 +244,10 @@
           feedback.style.color = 'var(--color-accent)';
           feedback.style.border = '1px solid var(--color-accent)';
           feedback.textContent = 'Message sent successfully. We will respond within 24 business hours.';
+          document.getElementById('name').value = '';
+          document.getElementById('company').value = '';
+          document.getElementById('email').value = '';
+          document.getElementById('service').value = '';
           document.getElementById('subject').value = '';
           document.getElementById('message').value = '';
           btn.textContent = 'Message Sent';

@@ -8,23 +8,31 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+$name    = strip_tags(trim($_POST['name'] ?? ''));
+$company = strip_tags(trim($_POST['company'] ?? ''));
+$email   = strip_tags(trim($_POST['email'] ?? ''));
+$service = strip_tags(trim($_POST['service'] ?? ''));
 $subject = strip_tags(trim($_POST['subject'] ?? 'New inquiry from dermech-etc.com'));
 $message = strip_tags(trim($_POST['message'] ?? ''));
 
-if (empty($message)) {
+if (empty($name) || empty($email) || empty($message)) {
     http_response_code(400);
-    echo json_encode(['success' => false, 'message' => 'Message is required']);
+    echo json_encode(['success' => false, 'message' => 'Name, email and message are required']);
     exit;
 }
 
 $to = 'info@dermech-etc.com';
-$headers = "From: noreply@dermech-etc.com\r\n";
-$headers .= "Reply-To: info@dermech-etc.com\r\n";
+$headers  = "From: noreply@dermech-etc.com\r\n";
+$headers .= "Reply-To: " . $email . "\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 $headers .= "X-Mailer: PHP/" . phpversion();
 
-$body = "New inquiry from dermech-etc.com\n";
+$body  = "New inquiry from dermech-etc.com\n";
 $body .= "================================\n\n";
+$body .= "Name:    " . $name . "\n";
+$body .= "Company: " . $company . "\n";
+$body .= "Email:   " . $email . "\n";
+$body .= "Service: " . $service . "\n";
 $body .= "Subject: " . $subject . "\n\n";
 $body .= "Message:\n" . $message . "\n";
 
