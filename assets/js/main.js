@@ -57,8 +57,8 @@
       // Update button text
       const buttonTexts = {
         'en': 'EN | DE | 中',
-        'de': 'DE | EN | 中',
-        'zh': '中 | EN | DE'
+        'de': 'EN | DE | 中',
+        'zh': 'EN | DE | 中'
       };
       toggle.textContent = buttonTexts[lang];
 
@@ -66,7 +66,7 @@
         toggleMobile.textContent = buttonTexts[lang];
       }
 
-      // Swap all bilingual text nodes
+      // Swap all trilingual text nodes
       document.querySelectorAll('[data-en][data-de][data-zh]').forEach(el => {
         let text;
         if (lang === 'zh') text = el.dataset.zh;
@@ -231,16 +231,17 @@
           <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 1.5rem; color: var(--color-accent);">
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
-          <h3 data-en="Message Sent" data-zh="訊息已送出">Message Sent</h3>
-          <p data-en="Thank you for your inquiry. We will respond within 24 business hours." data-zh="感謝您的詢問。我們將在24個工作小時內回覆。">Thank you for your inquiry. We will respond within 24 business hours.</p>
+          <h3 data-en="Message Sent" data-de="Nachricht gesendet" data-zh="訊息已送出">Message Sent</h3>
+          <p data-en="Thank you for your inquiry. We will respond within 24 business hours." data-de="Vielen Dank für Ihre Anfrage. Wir werden innerhalb von 24 Geschäftsstunden antworten." data-zh="感謝您的詢問。我們將在24個工作小時內回覆。">Thank you for your inquiry. We will respond within 24 business hours.</p>
         </div>
       `;
       
       // Re-initialize language for new elements
       const savedLang = localStorage.getItem('dermech-lang') || 'en';
       document.documentElement.classList.toggle('lang-zh', savedLang === 'zh');
-      form.querySelectorAll('[data-en][data-zh]').forEach(el => {
-        const text = savedLang === 'zh' ? el.dataset.zh : el.dataset.en;
+      document.documentElement.classList.toggle('lang-de', savedLang === 'de');
+      form.querySelectorAll('[data-en][data-de][data-zh]').forEach(el => {
+        const text = savedLang === 'zh' ? el.dataset.zh : (savedLang === 'de' ? el.dataset.de : el.dataset.en);
         el.textContent = text;
       });
     });
