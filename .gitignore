@@ -14,3 +14,6 @@ desktop.ini
 
 # Node (in case npm is ever used)
 node_modules/
+
+# Temp files
+_tmp_*.txt

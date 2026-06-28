@@ -1,76 +1,113 @@
 # DerMech Solution — Official Website
 
-> German Engineering Consulting for Industrial Automation, CE/DIN Standards Compliance, and Engineering Education in Taiwan and Asia.
+**德機智造 | Engineering Beyond Boundaries**
+
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+> German engineering consulting for industrial automation, CE/DIN standards compliance, and engineering education — serving Taiwan and Asia.
+
+---
 
 ## Overview
 
-Static website for DerMech Solution (dermech-etc.com), a German mechanical engineering consultancy bridging German engineering rigor with Asian manufacturing agility.
+Static corporate website for **DerMech Solution** ([dermech-etc.com](https://dermech-etc.com)), a German mechanical engineering consultancy bridging German engineering rigor with Asian manufacturing agility.
 
-Built with: HTML5 · CSS3 · Vanilla JavaScript · No frameworks · No build tools
+Built with pure HTML5 · CSS3 · Vanilla JavaScript — no frameworks, no build tools, no dependencies.
+
+---
+
+## Pages
+
+| File | Description |
+|------|-------------|
+| `index.html` | Homepage — hero, stats, services overview, industries preview |
+| `about.html` | Company background & founder profile |
+| `services.html` | Core services — Automation, Engineering Design, Education |
+| `industries.html` | 12 industries served |
+| `standards.html` | Engineering standards & 8-phase project workflow |
+| `contact.html` | Contact form with client-side validation |
+
+---
 
 ## Project Structure
 
 ```
-Z:\Codes\DerMech\
+DerMech/
 ├── index.html
 ├── about.html
 ├── services.html
 ├── industries.html
 ├── standards.html
 ├── contact.html
-├── _tmp_css_test.txt
-├── assets/
-│   ├── css/
-│   │   └── style.css
-│   ├── js/
-│   │   └── main.js
-│   └── img/
-│       ├── logo.jpg
-│       ├── 0A824CF5-811C-43F0-B132-735D2DDA64D2.jpg
-│       ├── factory-automation-agv.jpg
-│       ├── robot-arm-production.jpg
-│       ├── manufacturing-facility.jpg
-│       ├── cad-engineering-design.jpg
-│       ├── technical-blueprint.jpg
-│       ├── digital-command-center.jpg
-│       ├── cnc-precision-machining.jpg
-│       └── quality-control-measurement.jpg
-└── image/
-    ├── 1.PNG
-    ├── 2.PNG
-    ├── 3.PNG
-    ├── 4.PNG
-    ├── 5.PNG
-    ├── 6.PNG
-    ├── 7.PNG
-    └── 8.PNG
+├── robots.txt
+├── sitemap.xml
+├── LICENSE
+└── assets/
+    ├── css/
+    │   └── style.css
+    ├── js/
+    │   └── main.js
+    └── img/
 ```
+
+---
 
 ## Features
 
-- Bilingual (DE/EN/ZH) language switching via data attributes
-- Responsive design across mobile, tablet, and desktop breakpoints
-- Mobile hamburger navigation menu
-- Service sections: Industrial Automation · Engineering Design · CE/DIN Compliance · Engineering Education
-- Contact form
-- No external dependencies (self-contained static site)
+- **Bilingual EN/ZH** — all content via `data-en` / `data-zh` attributes, language persists in `localStorage`
+- **Responsive** — breakpoints at 1440px · 1024px · 768px · 375px
+- **Mobile navigation** — full-screen overlay hamburger menu
+- **Scroll animations** — IntersectionObserver reveal effects
+- **Contact form** — client-side validation with success state
+- **Accessibility** — semantic HTML, focus-visible outlines, reduced-motion support
+- **Zero dependencies** — no Bootstrap, no Tailwind, no npm
 
-## Deployment
-
-Hosted as a static site. No build step required — open index.html directly or deploy any static host (e.g. GitHub Pages, Netlify).
+---
 
 ## Standards Referenced
 
-- DIN EN ISO 9001
-- DIN EN 61355
-- ISO 128
+- DIN EN ISO 9001 — Quality Management
+- DIN EN 61355 — Classification of documents
+- ISO 128 — Technical drawings
 - CE Marking Directive
+
+---
+
+## Local Development
+
+No build step required. Open directly in a browser or serve locally:
+
+```bash
+python -m http.server 8000
+# → http://localhost:8000
+```
+
+---
+
+## Brand
+
+| Token | Value |
+|-------|-------|
+| Primary color | `#1A56DB` (German Blue) |
+| Display font | Barlow |
+| Body font | Inter |
+| Mono font | JetBrains Mono |
+| Design language | German industrial · Swiss grid · dark theme |
+
+---
 
 ## License
 
-MIT License — see LICENSE file for details.
+MIT License — see [LICENSE](LICENSE) for details.
+
+© 2024 DerMech Solution
+
+---
 
 ## Contact
 
-Website: https://dermech-etc.com
-GitHub: https://github.com/7miwork/DerMech
+🌐 [dermech-etc.com](https://dermech-etc.com)  
+💻 [github.com/7miwork/DerMech](https://github.com/7miwork/DerMech)
