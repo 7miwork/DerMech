@@ -1,33 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
   <url>
     <loc>https://dermech-etc.com/</loc>
-    <priority>1.0</priority>
+    <lastmod>2024-12-01</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dermech-etc.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://dermech-etc.com/"/>
   </url>
+
   <url>
     <loc>https://dermech-etc.com/about.html</loc>
-    <priority>0.8</priority>
+    <lastmod>2024-12-01</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dermech-etc.com/about.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://dermech-etc.com/about.html"/>
   </url>
+
   <url>
     <loc>https://dermech-etc.com/services.html</loc>
-    <priority>0.9</priority>
+    <lastmod>2024-12-01</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dermech-etc.com/services.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://dermech-etc.com/services.html"/>
   </url>
+
   <url>
     <loc>https://dermech-etc.com/industries.html</loc>
-    <priority>0.8</priority>
+    <lastmod>2024-12-01</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dermech-etc.com/industries.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://dermech-etc.com/industries.html"/>
   </url>
+
   <url>
     <loc>https://dermech-etc.com/standards.html</loc>
-    <priority>0.7</priority>
+    <lastmod>2024-12-01</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dermech-etc.com/standards.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://dermech-etc.com/standards.html"/>
   </url>
+
   <url>
     <loc>https://dermech-etc.com/contact.html</loc>
-    <priority>0.7</priority>
+    <lastmod>2024-12-01</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dermech-etc.com/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://dermech-etc.com/contact.html"/>
   </url>
+
 </urlset>

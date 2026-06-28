@@ -1,4 +1,13 @@
-User-agent: *
-Allow: /
+    User-agent: *
+    Allow: /
 
-Sitemap: https://dermech-etc.com/sitemap.xml
+    # Block access to temporary and development files
+    Disallow: /_tmp_*
+    Disallow: /*.log
+    Disallow: /*.txt$
+
+    # Allow sitemap and robots
+    Allow: /robots.txt
+    Allow: /sitemap.xml
+
+    Sitemap: https://dermech-etc.com/sitemap.xml
