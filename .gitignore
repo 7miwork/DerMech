@@ -14,6 +14,8 @@ desktop.ini
 
 # Node (in case npm is ever used)
 node_modules/
+vendor/
+composer.lock
 
 # Temp files
 _tmp_*.txt

@@ -21,27 +21,81 @@ if (empty($name) || empty($email) || empty($message)) {
     exit;
 }
 
-$to = 'info@dermech-etc.com';
-$headers  = "From: noreply@dermech-etc.com\r\n";
-$headers .= "Reply-To: " . $email . "\r\n";
-$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-$headers .= "X-Mailer: PHP/" . phpversion();
+// Load PHPMailer
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-$body  = "New inquiry from dermech-etc.com\n";
-$body .= "================================\n\n";
-$body .= "Name:    " . $name . "\n";
-$body .= "Company: " . $company . "\n";
-$body .= "Email:   " . $email . "\n";
-$body .= "Service: " . $service . "\n";
-$body .= "Subject: " . $subject . "\n\n";
-$body .= "Message:\n" . $message . "\n";
+require 'vendor/autoload.php';
 
-$sent = mail($to, $subject, $body, $headers);
+// ── 1. Email to DerMech ──────────────────────────────────────
+try {
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->Host       = 'smtp.hostinger.com';
+    $mail->SMTPAuth   = true;
+    $mail->Username   = 'info@dermech-etc.com';
+    $mail->Password   = 'DEIN_EMAIL_PASSWORT';
+    $mail->SMTPSecure = 'ssl';
+    $mail->Port       = 465;
+    $mail->CharSet    = 'UTF-8';
 
-if ($sent) {
+    $mail->setFrom('info@dermech-etc.com', 'DerMech Solution');
+    $mail->addAddress('info@dermech-etc.com', 'DerMech Solution');
+    $mail->addReplyTo($email, $name);
+
+    $mail->Subject = $subject;
+    $mail->Body    =
+        "New inquiry from dermech-etc.com\n" .
+        "================================\n\n" .
+        "Name:    " . $name    . "\n" .
+        "Company: " . $company . "\n" .
+        "Email:   " . $email   . "\n" .
+        "Service: " . $service . "\n" .
+        "Subject: " . $subject . "\n\n" .
+        "Message:\n" . $message . "\n";
+
+    $mail->send();
+
+    // ── 2. Confirmation to customer ──────────────────────────
+    $mail2 = new PHPMailer(true);
+    $mail2->isSMTP();
+    $mail2->Host       = 'smtp.hostinger.com';
+    $mail2->SMTPAuth   = true;
+    $mail2->Username   = 'info@dermech-etc.com';
+    $mail2->Password   = 'JtMl$2027';
+    $mail2->SMTPSecure = 'ssl';
+    $mail2->Port       = 465;
+    $mail2->CharSet    = 'UTF-8';
+
+    $mail2->setFrom('info@dermech-etc.com', 'DerMech Solution');
+    $mail2->addAddress($email, $name);
+    $mail2->addReplyTo('info@dermech-etc.com', 'DerMech Solution');
+
+    $mail2->Subject = 'Your inquiry has been received — DerMech Solution';
+    $mail2->Body    =
+        "Dear " . $name . ",\n\n" .
+        "Thank you for reaching out to DerMech Solution.\n" .
+        "We have received your inquiry and will respond within 24 business hours.\n\n" .
+        "─────────────────────────────────\n" .
+        "YOUR INQUIRY SUMMARY\n" .
+        "─────────────────────────────────\n" .
+        "Subject: " . $subject . "\n" .
+        "Service: " . $service . "\n\n" .
+        "Message:\n" . $message . "\n" .
+        "─────────────────────────────────\n\n" .
+        "If you have urgent questions, contact us directly:\n" .
+        "info@dermech-etc.com\n\n" .
+        "Best regards,\n" .
+        "DerMech Solution | 德機智造\n" .
+        "Engineering Beyond Boundaries\n" .
+        "https://dermech-etc.com\n";
+
+    $mail2->send();
+
     echo json_encode(['success' => true, 'message' => 'Email sent successfully']);
-} else {
+
+} catch (Exception $e) {
     http_response_code(500);
-    echo json_encode(['success' => false, 'message' => 'Failed to send email']);
+    echo json_encode(['success' => false, 'message' => 'Mailer error: ' . $e->getMessage()]);
 }
 ?>
