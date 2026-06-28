@@ -21,81 +21,54 @@ if (empty($name) || empty($email) || empty($message)) {
     exit;
 }
 
-// Load PHPMailer
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+$to = 'info@dermech-etc.com';
 
-require 'vendor/autoload.php';
+$headers  = "From: info@dermech-etc.com\r\n";
+$headers .= "Reply-To: " . $email . "\r\n";
+$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+$headers .= "X-Mailer: PHP/" . phpversion();
 
-// ── 1. Email to DerMech ──────────────────────────────────────
-try {
-    $mail = new PHPMailer(true);
-    $mail->isSMTP();
-    $mail->Host       = 'smtp.hostinger.com';
-    $mail->SMTPAuth   = true;
-    $mail->Username   = 'info@dermech-etc.com';
-    $mail->Password   = 'DEIN_EMAIL_PASSWORT';
-    $mail->SMTPSecure = 'ssl';
-    $mail->Port       = 465;
-    $mail->CharSet    = 'UTF-8';
+$body  = "New inquiry from dermech-etc.com\n";
+$body .= "================================\n\n";
+$body .= "Name:    " . $name    . "\n";
+$body .= "Company: " . $company . "\n";
+$body .= "Email:   " . $email   . "\n";
+$body .= "Service: " . $service . "\n";
+$body .= "Subject: " . $subject . "\n\n";
+$body .= "Message:\n" . $message . "\n";
 
-    $mail->setFrom('info@dermech-etc.com', 'DerMech Solution');
-    $mail->addAddress('info@dermech-etc.com', 'DerMech Solution');
-    $mail->addReplyTo($email, $name);
+$sent = mail($to, $subject, $body, $headers);
 
-    $mail->Subject = $subject;
-    $mail->Body    =
-        "New inquiry from dermech-etc.com\n" .
-        "================================\n\n" .
-        "Name:    " . $name    . "\n" .
-        "Company: " . $company . "\n" .
-        "Email:   " . $email   . "\n" .
-        "Service: " . $service . "\n" .
-        "Subject: " . $subject . "\n\n" .
-        "Message:\n" . $message . "\n";
+if ($sent) {
+    // Confirmation to customer
+    $headers2  = "From: DerMech Solution <info@dermech-etc.com>\r\n";
+    $headers2 .= "Reply-To: info@dermech-etc.com\r\n";
+    $headers2 .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-    $mail->send();
+    $subject2 = "Your inquiry has been received — DerMech Solution";
 
-    // ── 2. Confirmation to customer ──────────────────────────
-    $mail2 = new PHPMailer(true);
-    $mail2->isSMTP();
-    $mail2->Host       = 'smtp.hostinger.com';
-    $mail2->SMTPAuth   = true;
-    $mail2->Username   = 'info@dermech-etc.com';
-    $mail2->Password   = 'JtMl$2027';
-    $mail2->SMTPSecure = 'ssl';
-    $mail2->Port       = 465;
-    $mail2->CharSet    = 'UTF-8';
+    $body2  = "Dear " . $name . ",\n\n";
+    $body2 .= "Thank you for reaching out to DerMech Solution.\n";
+    $body2 .= "We have received your inquiry and will respond within 24 business hours.\n\n";
+    $body2 .= "─────────────────────────────────\n";
+    $body2 .= "YOUR INQUIRY SUMMARY\n";
+    $body2 .= "─────────────────────────────────\n";
+    $body2 .= "Subject: " . $subject . "\n";
+    $body2 .= "Service: " . $service . "\n\n";
+    $body2 .= "Message:\n" . $message . "\n";
+    $body2 .= "─────────────────────────────────\n\n";
+    $body2 .= "If you have urgent questions, contact us directly:\n";
+    $body2 .= "info@dermech-etc.com\n\n";
+    $body2 .= "Best regards,\n";
+    $body2 .= "DerMech Solution | 德機智造\n";
+    $body2 .= "Engineering Beyond Boundaries\n";
+    $body2 .= "https://dermech-etc.com\n";
 
-    $mail2->setFrom('info@dermech-etc.com', 'DerMech Solution');
-    $mail2->addAddress($email, $name);
-    $mail2->addReplyTo('info@dermech-etc.com', 'DerMech Solution');
-
-    $mail2->Subject = 'Your inquiry has been received — DerMech Solution';
-    $mail2->Body    =
-        "Dear " . $name . ",\n\n" .
-        "Thank you for reaching out to DerMech Solution.\n" .
-        "We have received your inquiry and will respond within 24 business hours.\n\n" .
-        "─────────────────────────────────\n" .
-        "YOUR INQUIRY SUMMARY\n" .
-        "─────────────────────────────────\n" .
-        "Subject: " . $subject . "\n" .
-        "Service: " . $service . "\n\n" .
-        "Message:\n" . $message . "\n" .
-        "─────────────────────────────────\n\n" .
-        "If you have urgent questions, contact us directly:\n" .
-        "info@dermech-etc.com\n\n" .
-        "Best regards,\n" .
-        "DerMech Solution | 德機智造\n" .
-        "Engineering Beyond Boundaries\n" .
-        "https://dermech-etc.com\n";
-
-    $mail2->send();
+    mail($email, $subject2, $body2, $headers2);
 
     echo json_encode(['success' => true, 'message' => 'Email sent successfully']);
-
-} catch (Exception $e) {
+} else {
     http_response_code(500);
-    echo json_encode(['success' => false, 'message' => 'Mailer error: ' . $e->getMessage()]);
+    echo json_encode(['success' => false, 'message' => 'Failed to send email']);
 }
 ?>
