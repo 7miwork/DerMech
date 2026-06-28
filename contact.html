@@ -124,9 +124,7 @@
         
         <!-- Right: Contact Form -->
         <div>
-          <form id="contact-form" class="reveal" style="padding: 2rem; background: var(--color-surface); border: 1px solid var(--color-border);" action="https://formspree.io/f/mlgynlog" method="POST">
-            <input type="hidden" name="_replyto" value="info@dermech-etc.com">
-            <input type="hidden" name="_subject" value="New inquiry from dermech-etc.com">
+          <form id="contact-form" class="reveal" style="padding: 2rem; background: var(--color-surface); border: 1px solid var(--color-border);">
             <div class="form-group">
               <label for="name" data-en="Name | 姓名" data-zh="姓名 | Name">Name | 姓名</label>
               <input type="text" id="name" name="name" required data-en="Your full name" data-zh="您的全名">
@@ -158,7 +156,7 @@
               <textarea id="message" name="message" rows="5" required data-en="Describe your project, challenges, and objectives..." data-zh="描述您的專案、挑戰與目標...">Describe your project, challenges, and objectives...</textarea>
             </div>
             
-            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem 2rem; font-size: 1rem;" data-en="Send Message" data-zh="送出訊息">Send Message</button>
+            <a id="mailto-btn" href="#" class="btn btn-primary" style="width: 100%; padding: 1rem 2rem; font-size: 1rem; display: block; text-align: center; text-decoration: none;" data-en="Send Message" data-zh="送出訊息">Send Message</a>
           </form>
         </div>
       </div>
@@ -188,7 +186,7 @@
         </nav>
         <div>
           <p class="caption" data-en="CONTACT" data-zh="聯繫方式">CONTACT</p>
-          <p style="margin-top: 0.5rem;">info@dermech-etc.com</p>
+          <a href="mailto:info@dermech-etc.com" style="font-family: var(--font-mono); font-size: 1.125rem; color: var(--color-accent); text-decoration: none;">info@dermech-etc.com</a>
         </div>
       </div>
       <div class="copyright" data-en="© 2024 DerMech Solution. All rights reserved." data-zh="© 2024 德機智造 版權所有">© 2024 DerMech Solution. All rights reserved.</div>
@@ -197,5 +195,28 @@
 
   <!-- JS -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+    document.getElementById('mailto-btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const company = document.getElementById('company').value;
+      const email = document.getElementById('email').value;
+      const service = document.getElementById('service').value;
+      const message = document.getElementById('message').value;
+
+      const subject = encodeURIComponent('New inquiry from dermech-etc.com — ' + service);
+      const body = encodeURIComponent(
+        'Name: ' + name + '\n' +
+        'Company: ' + company + '\n' +
+        'Email: ' + email + '\n' +
+        'Service: ' + service + '\n\n' +
+        'Message:\n' + message
+      );
+
+      window.location.href = 'mailto:info@dermech-etc.com?subject=' + subject + '&body=' + body;
+    });
+  </script>
+
 </body>
 </html>
